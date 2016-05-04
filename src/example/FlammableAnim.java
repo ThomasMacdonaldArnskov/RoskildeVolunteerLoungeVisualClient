@@ -336,7 +336,9 @@ class FlammableAnim {
                 width4 -= 66.67;
 
                 g.fillOval(x4Pos, y4Pos, width4, height4);
+
             } else {
+
                 reset();
                 running = false;
             }
@@ -364,6 +366,7 @@ class FlammableAnim {
      *
      ***************************************/
     private void reset() {
+
         counter = 0;
 
         xPos = 957.4f;
