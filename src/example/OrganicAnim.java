@@ -4,6 +4,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
 /**
+ * Class for organic animation
  * Created by Thomas Macdonald on 04-05-2016.
  */
 
@@ -39,6 +40,18 @@ class OrganicAnim {
 
     }
 
+    public void updateTrashRace() {
+        System.out.println("*MODEM SOUND* updated the race parameters");
+    }
+
+    public void updateWeight() {
+        System.out.println("*MODEM SOUND* updated the weight parameters");
+    }
+
+    public void updatePieChart() {
+        System.out.println("*MODEM SOUND* updated the pie chart");
+    }
+
     /**************************************
      * Hope You Like Pasta!
      * Animation Control for the visual impulse for the flammable garbage
@@ -52,7 +65,6 @@ class OrganicAnim {
 
         if (running) {
 
-            System.out.println(counter);
             counter++;
 
             if (counter < 6) {
@@ -173,7 +185,6 @@ class OrganicAnim {
 
             } else if (counter >= 135 && counter < 151) {
 
-                //xPos +=1.05f;
                 width+= 27.99f;
                 width7 += 20.325f;
 
@@ -204,6 +215,7 @@ class OrganicAnim {
                 g.fillRect(x2Pos,y2Pos,width2,height2);
                 g.fillRect(x3Pos,y3Pos,width3,height3);
 
+                updateTrashRace();
             }
             else if (counter >= 155 && counter < 159) {
                 width3 += 13.3625f;
@@ -280,7 +292,7 @@ class OrganicAnim {
                 width7 = 6.15f;
                 height7 = 100f;
 
-
+                updateWeight();
             }
             else if (counter >= 191 && counter < 195) {
 
@@ -429,6 +441,8 @@ class OrganicAnim {
                 height4 += 25.92;
 
                 g.fillOval(x4Pos, y4Pos, width4, height4);
+
+                updatePieChart();
 
             } else if (counter >= 297 && counter < 312) {
 

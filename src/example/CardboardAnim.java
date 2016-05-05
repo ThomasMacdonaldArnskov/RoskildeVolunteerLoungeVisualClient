@@ -4,6 +4,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
 /**
+ * Class for Cardboard Animation
  * Created by Thomas Macdonald on 04-05-2016.
  */
 class CardboardAnim {
@@ -30,9 +31,6 @@ class CardboardAnim {
     private float xWeightPos, yWeightPos, widthWeight, heightWeight;
     private float xRacePos, yRacePos, widthRace, heightRace;
 
-    //Overlay elements
-    private float pX, pY, radius;
-
     private int alpha = 255;
 
 
@@ -41,6 +39,18 @@ class CardboardAnim {
         //STARTING POSITION
         reset();
 
+    }
+
+    public void updateTrashRace() {
+        System.out.println("*MODEM SOUND* updated the race parameters");
+    }
+
+    public void updateWeight() {
+        System.out.println("*MODEM SOUND* updated the weight parameters");
+    }
+
+    public void updatePieChart() {
+        System.out.println("*MODEM SOUND* updated the pie chart");
     }
 
     /**************************************
@@ -56,7 +66,6 @@ class CardboardAnim {
 
         if (running) {
 
-            System.out.println(counter);
             counter++;
 
             if (counter < 6) {
@@ -169,7 +178,6 @@ class CardboardAnim {
 
             } else if (counter >= 135 && counter < 151) {
 
-                //xPos += 1.05f;
                 width7 += 21.1f;
                 x7Pos -= 21.1f;
 
@@ -191,7 +199,6 @@ class CardboardAnim {
                 height += 7.95f;
                 height2 += 15.43f;
 
-
                 g.fillRect(xPos, yPos, width, height);
                 g.fillRect(x2Pos, y2Pos, width2, height2);
 
@@ -202,6 +209,7 @@ class CardboardAnim {
                 width3 = 6.8f;
                 height3 = 41.7f;
 
+                updateWeight();
 
             } else if (counter >= 155 && counter < 160) {
 
@@ -337,6 +345,8 @@ class CardboardAnim {
                 yRacePos = 653.35f;
                 widthRace = 7;
                 heightRace = 21.4f;
+
+                updateTrashRace();
 
             } else if (counter >= 197 && counter < 202) {
 
@@ -496,8 +506,9 @@ class CardboardAnim {
                 width += 25.92;
                 height += 25.92;
 
-
                 g.fillOval(xPos, yPos, width, height);
+
+                updatePieChart();
 
             } else if (counter >= 292 && counter < 305) {
 
@@ -585,9 +596,6 @@ class CardboardAnim {
         widthRace = 16.85f;
         heightRace = 45.9f;
 
-        pX = 903.85f;
-        pY = 892.5f;
-        radius = 110.6f;
     }
 }
 

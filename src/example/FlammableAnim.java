@@ -46,82 +46,16 @@ class FlammableAnim {
 
     }
 
-    void animationOverlay(Graphics g) {
+    public void updateTrashRace() {
+        System.out.println("*MODEM SOUND* updated the race parameters");
+    }
 
-        if (running) {
-            g.setLineWidth(10f);
-            if (counter >= 24 && counter < 37) {
+    public void updateWeight() {
+        System.out.println("*MODEM SOUND* updated the weight parameters");
+    }
 
-                pX -= 1.75f;
-                pY -= 1.75f;
-                radius += 3.5f;
-
-                g.drawOval(pX,pY,radius,radius);
-            } else if (counter >= 37 && counter < 40) {
-
-                pX += 2.45f;
-                pY += 2.45f;
-                radius -= 4.87f;
-
-                g.drawOval(pX,pY,radius,radius);
-            } else if (counter >= 40 && counter < 43) {
-
-                pX -= 2.45f;
-                pY -= 2.45f;
-                radius += 4.87f;
-
-                g.drawOval(pX,pY,radius,radius);
-            }
-            else if (counter >= 43 && counter < 46) {
-
-                pX += 2.45f;
-                pY += 2.45f;
-                radius -= 4.87f;
-
-                g.drawOval(pX, pY, radius, radius);
-            }
-            else if (counter >= 46 && counter < 57) {
-
-                pX -= 1.49f;
-                pY -= 1.49f;
-                radius += 2.97f;
-
-                g.drawOval(pX, pY, radius, radius);
-            }
-                else if (counter >= 57 && counter < 69) {
-
-                    pX += 2.49f;
-                    pY += 2.49f;
-                    radius -= 4.97f;
-
-                    g.drawOval(pX, pY, radius, radius);
-            }
-            else if (counter >= 69 && counter < 72) {
-
-                pX -= 1.75f;
-                pY -= 1.75f;
-                radius += 3.5f;
-
-                g.drawOval(pX,pY,radius,radius);
-            } else if (counter >= 72 && counter < 75) {
-
-                pX += 2.45f;
-                pY += 2.45f;
-                radius -= 4.87f;
-
-                g.drawOval(pX,pY,radius,radius);
-            }
-            else if (counter >= 75 && counter < 86) {
-
-                pX -= 1.49f;
-                pY -= 1.49f;
-                radius += 2.97f;
-
-                g.drawOval(pX, pY, radius, radius);
-            }
-
-
-        }
+    public void updatePieChart() {
+        System.out.println("*MODEM SOUND* updated the pie chart");
     }
 
 
@@ -137,7 +71,6 @@ class FlammableAnim {
 
         if (running) {
 
-            System.out.println(counter);
             counter++;
 
             if (counter < 10) {
@@ -314,6 +247,8 @@ class FlammableAnim {
                 g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
                 g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
 
+                updateWeight();
+
             } else if (counter >= 193 && counter < 200) {
 
                 yPos -= 18.78f;
@@ -381,6 +316,8 @@ class FlammableAnim {
                 g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
                 g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
 
+                updateTrashRace();
+
             } else if (counter >= 240 && counter < 252) {
 
                 x2Pos += 10.55f;
@@ -414,7 +351,9 @@ class FlammableAnim {
                 g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
 
             } else if (counter >= 266 && counter < 280) {
+
                 height3 += 11.2f;
+
                 g.fillRect(x3Pos, y3Pos, width3, height3);
 
                 x4Pos = 811.15f;
@@ -430,6 +369,8 @@ class FlammableAnim {
                 height4 += 25.92;
 
                 g.fillOval(x4Pos, y4Pos, width4, height4);
+
+                updatePieChart();
 
             } else if (counter >= 297 && counter < 312) {
 
@@ -450,6 +391,87 @@ class FlammableAnim {
         }
     }
 
+    /**
+     * When there is time at some point
+     * @param g Slick Graphics element
+     */
+    void animationOverlay(Graphics g) {
+
+        if (running) {
+            g.setLineWidth(10f);
+            if (counter >= 24 && counter < 37) {
+
+                pX -= 1.75f;
+                pY -= 1.75f;
+                radius += 3.5f;
+
+                g.drawOval(pX,pY,radius,radius);
+            } else if (counter >= 37 && counter < 40) {
+
+                pX += 2.45f;
+                pY += 2.45f;
+                radius -= 4.87f;
+
+                g.drawOval(pX,pY,radius,radius);
+            } else if (counter >= 40 && counter < 43) {
+
+                pX -= 2.45f;
+                pY -= 2.45f;
+                radius += 4.87f;
+
+                g.drawOval(pX,pY,radius,radius);
+            }
+            else if (counter >= 43 && counter < 46) {
+
+                pX += 2.45f;
+                pY += 2.45f;
+                radius -= 4.87f;
+
+                g.drawOval(pX, pY, radius, radius);
+            }
+            else if (counter >= 46 && counter < 57) {
+
+                pX -= 1.49f;
+                pY -= 1.49f;
+                radius += 2.97f;
+
+                g.drawOval(pX, pY, radius, radius);
+            }
+            else if (counter >= 57 && counter < 69) {
+
+                pX += 2.49f;
+                pY += 2.49f;
+                radius -= 4.97f;
+
+                g.drawOval(pX, pY, radius, radius);
+            }
+            else if (counter >= 69 && counter < 72) {
+
+                pX -= 1.75f;
+                pY -= 1.75f;
+                radius += 3.5f;
+
+                g.drawOval(pX,pY,radius,radius);
+            } else if (counter >= 72 && counter < 75) {
+
+                pX += 2.45f;
+                pY += 2.45f;
+                radius -= 4.87f;
+
+                g.drawOval(pX,pY,radius,radius);
+            }
+            else if (counter >= 75 && counter < 86) {
+
+                pX -= 1.49f;
+                pY -= 1.49f;
+                radius += 2.97f;
+
+                g.drawOval(pX, pY, radius, radius);
+            }
+
+
+        }
+    }
 
     /***************************************
      *  Getter and setter methods
