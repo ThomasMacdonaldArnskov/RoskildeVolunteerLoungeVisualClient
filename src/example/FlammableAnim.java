@@ -36,6 +36,8 @@ class FlammableAnim {
     //Overlay elements
     private float pX, pY, radius;
 
+    private int alpha = 255;
+
 
     FlammableAnim() {
 
@@ -435,10 +437,10 @@ class FlammableAnim {
 
             } else if (counter >= 312 && counter < 323) {
 
-                x4Pos += 33.25;
-                width4 -= 66.67;
-
+                Color alphacontrol = new Color(198,55,32, alpha);
+                g.setColor(alphacontrol);
                 g.fillOval(x4Pos, y4Pos, width4, height4);
+                alpha -= 23;
 
             } else {
 

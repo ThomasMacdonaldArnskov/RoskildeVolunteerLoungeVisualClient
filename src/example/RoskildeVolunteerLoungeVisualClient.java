@@ -56,6 +56,7 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame
 
 		//FOR TESTING
 		//organicAnim.animation(g);
+		//cardboardAnim.animation(g);
 
 		g.drawImage(toplayer,0,0);
 
