@@ -2,15 +2,16 @@ package example;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.newdawn.slick.*;
 
 public class RoskildeVolunteerLoungeVisualClient extends BasicGame
 {
 	private Image wires, bg, toplayer;
-	//Image[] flamstart = new Image[250];
 
-    FlammableAnim flamAnim;
-    FlammableAnim flamAnim2;
+    private FlammableAnim flamAnim;
+    private CardboardAnim cardboardAnim;
+    private OrganicAnim organicAnim;
 
 
 
@@ -22,21 +23,13 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {
+
 		wires = new Image("assets/wires.png");
 		bg = new Image("assets/bg.png");
 		toplayer = new Image("assets/toplayer.png");
         flamAnim = new FlammableAnim();
-        flamAnim2 = new FlammableAnim();
-
-		/*for (int i = 1; i < flamstart.length; i++) {
-            if (i < 10) {
-                flamstart[i - 1] = new Image("/assets/flam/anim000" + i + ".png");
-            } else if (i < 100){
-                flamstart[i - 1] = new Image("/assets/flam/anim00" + i + ".png");
-            } else {
-                flamstart[i - 1] = new Image("/assets/flam/anim0" + i + ".png");
-            }
-		}*/
+        cardboardAnim = new CardboardAnim();
+        organicAnim = new OrganicAnim();
 
 	}
 
@@ -50,17 +43,24 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame
             flamAnim.setRunning(true);
         }
         if (gc.getInput().isKeyDown(Input.KEY_2)) {
-            flamAnim2.setRunning(true);
+            cardboardAnim.setRunning(true);
+        }
+        if (gc.getInput().isKeyDown(Input.KEY_3)) {
+            organicAnim.setRunning(true);
         }
         flamAnim.animation(g);
-        flamAnim2.animation(g);
+        cardboardAnim.animation(g);
+        organicAnim.animation(g);
 
         g.drawImage(bg,0,0);
 
 		//FOR TESTING
-		//flamAnim.animation(gc,g);
+		//organicAnim.animation(g);
 
 		g.drawImage(toplayer,0,0);
+
+        //flamAnim.animationOverlay(g);
+        //flamAnim2.animationOverlay(g);
 
 	}
 

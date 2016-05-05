@@ -12,6 +12,8 @@ import org.newdawn.slick.Graphics;
 
 class FlammableAnim {
 
+    private static final Color flamred = new Color(198,55,32,255);
+
     //Active or not
     private boolean running;
 
@@ -25,10 +27,14 @@ class FlammableAnim {
     private float x4Pos, y4Pos, width4, height4;
     private float x5Pos, y5Pos, width5, height5;
     private float x6Pos, y6Pos, width6, height6;
+    private float x7Pos, y7Pos, width7, height7;
 
     //Longer sustained highlights
     private float xWeightPos, yWeightPos, widthWeight, heightWeight;
     private float xRacePos, yRacePos, widthRace, heightRace;
+
+    //Overlay elements
+    private float pX, pY, radius;
 
 
     FlammableAnim() {
@@ -36,6 +42,84 @@ class FlammableAnim {
         //STARTING POSITION
         reset();
 
+    }
+
+    void animationOverlay(Graphics g) {
+
+        if (running) {
+            g.setLineWidth(10f);
+            if (counter >= 24 && counter < 37) {
+
+                pX -= 1.75f;
+                pY -= 1.75f;
+                radius += 3.5f;
+
+                g.drawOval(pX,pY,radius,radius);
+            } else if (counter >= 37 && counter < 40) {
+
+                pX += 2.45f;
+                pY += 2.45f;
+                radius -= 4.87f;
+
+                g.drawOval(pX,pY,radius,radius);
+            } else if (counter >= 40 && counter < 43) {
+
+                pX -= 2.45f;
+                pY -= 2.45f;
+                radius += 4.87f;
+
+                g.drawOval(pX,pY,radius,radius);
+            }
+            else if (counter >= 43 && counter < 46) {
+
+                pX += 2.45f;
+                pY += 2.45f;
+                radius -= 4.87f;
+
+                g.drawOval(pX, pY, radius, radius);
+            }
+            else if (counter >= 46 && counter < 57) {
+
+                pX -= 1.49f;
+                pY -= 1.49f;
+                radius += 2.97f;
+
+                g.drawOval(pX, pY, radius, radius);
+            }
+                else if (counter >= 57 && counter < 69) {
+
+                    pX += 2.49f;
+                    pY += 2.49f;
+                    radius -= 4.97f;
+
+                    g.drawOval(pX, pY, radius, radius);
+            }
+            else if (counter >= 69 && counter < 72) {
+
+                pX -= 1.75f;
+                pY -= 1.75f;
+                radius += 3.5f;
+
+                g.drawOval(pX,pY,radius,radius);
+            } else if (counter >= 72 && counter < 75) {
+
+                pX += 2.45f;
+                pY += 2.45f;
+                radius -= 4.87f;
+
+                g.drawOval(pX,pY,radius,radius);
+            }
+            else if (counter >= 75 && counter < 86) {
+
+                pX -= 1.49f;
+                pY -= 1.49f;
+                radius += 2.97f;
+
+                g.drawOval(pX, pY, radius, radius);
+            }
+
+
+        }
     }
 
 
@@ -47,7 +131,7 @@ class FlammableAnim {
 
     void animation(Graphics g) {
 
-        g.setColor(Color.red);
+        g.setColor(flamred);
 
         if (running) {
 
@@ -208,15 +292,22 @@ class FlammableAnim {
                 width4 = 115f;
                 height4 = 5.25f;
 
+                x3Pos = 1341.45f;
+                y3Pos = 631.55f;
+                width3 = 7f;
+                height3 = 69.3f;
+
             } else if (counter >= 182 && counter < 193) {
 
                 yPos -= 28.78f;
+                y3Pos -= 8.27f;
                 x5Pos -= 13.62;
                 y6Pos -= 14.17f;
                 widthRace += 14.85f;
 
-                g.fillRect(x5Pos, y5Pos, width5, height5);
                 g.fillRect(xPos, yPos, width, height);
+                g.fillRect(x3Pos, y3Pos, width3, height3);
+                g.fillRect(x5Pos, y5Pos, width5, height5);
                 g.fillRect(x6Pos, y6Pos, width6, height6);
                 g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
                 g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
@@ -224,16 +315,20 @@ class FlammableAnim {
             } else if (counter >= 193 && counter < 200) {
 
                 yPos -= 18.78f;
+                y3Pos -= 8.27f;
                 x4Pos -= 17.5f;
                 x5Pos -= 13.62f;
                 y6Pos -= 14.17f;
+                width7 += 10.02f;
                 xRacePos += 0.52f;
                 widthRace += 14.85f;
 
+                g.fillRect(xPos, yPos, width, height);
+                g.fillRect(x3Pos, y3Pos, width3, height3);
                 g.fillRect(x4Pos, y4Pos, width4, height4);
                 g.fillRect(x5Pos, y5Pos, width5, height5);
-                g.fillRect(xPos, yPos, width, height);
                 g.fillRect(x6Pos, y6Pos, width6, height6);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
                 g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
                 g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
 
@@ -242,12 +337,14 @@ class FlammableAnim {
                 yPos -= 18.78f;
                 x2Pos += 20.925f;
                 x4Pos -= 17.5f;
+                width7 += 10.02f;
                 xRacePos += 0.52f;
                 widthRace += 14.85f;
 
                 g.fillRect(xPos, yPos, width, height);
                 g.fillRect(x2Pos, y2Pos, width2, height2);
                 g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
                 g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
                 g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
 
@@ -255,11 +352,13 @@ class FlammableAnim {
 
                 x2Pos += 20.925f;
                 x4Pos -= 18.6f;
+                width7 += 10.02f;
                 xRacePos += 1.1f;
                 widthRace += 14.85f;
 
                 g.fillRect(x2Pos, y2Pos, width2, height2);
                 g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
                 g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
                 g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
 
@@ -272,9 +371,11 @@ class FlammableAnim {
 
                 x2Pos += 20.925f;
                 x4Pos -= 18.6f;
+                x7Pos += 8.44f;
 
                 g.fillRect(x2Pos, y2Pos, width2, height2);
                 g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
                 g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
                 g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
 
@@ -289,6 +390,7 @@ class FlammableAnim {
                 g.fillRect(xPos, yPos, width, height);
                 g.fillRect(x4Pos, y4Pos, width4, height4);
                 g.fillRect((xPos + 19.35f), yPos, width, height);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
                 g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
                 g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
 
@@ -305,6 +407,7 @@ class FlammableAnim {
                 g.fillRect(xPos, yPos, width, height);
                 g.fillRect((xPos + 19.35f), yPos, width, height);
                 g.fillRect(x3Pos, y3Pos, width3, height3);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
                 g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
                 g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
 
@@ -399,6 +502,11 @@ class FlammableAnim {
         width6 = 7f;
         height6 = 115f;
 
+        x7Pos = 1348.2f;
+        y7Pos = 507.2f;
+        width7 = 20.4f;
+        height7 = 98.3f;
+
         xWeightPos = 1788.4f;
         yWeightPos = 627.75f;
         widthWeight = 17.45f;
@@ -408,6 +516,10 @@ class FlammableAnim {
         yRacePos = 627.45f;
         widthRace = 16.85f;
         heightRace = 45.9f;
+
+        pX = 903.85f;
+        pY = 892.5f;
+        radius = 110.6f;
     }
 
 }
