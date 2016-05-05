@@ -28,10 +28,6 @@ class OrganicAnim {
 
     //Longer sustained highlights
     private float xWeightPos, yWeightPos, widthWeight, heightWeight;
-    private float xRacePos, yRacePos, widthRace, heightRace;
-
-    //Overlay elements
-    private float pX, pY, radius;
 
     private int alpha = 255;
 
@@ -170,14 +166,14 @@ class OrganicAnim {
                 g.fillRect(x6Pos, y6Pos, width6, height6);
                 g.fillRect(x7Pos, y7Pos, width7, height7);
 
-                xPos = 113.9f;
+                xPos = 131.9f;
                 yPos = 625.1f;
                 width = 44.4f;
                 height = 48.1f;
 
             } else if (counter >= 135 && counter < 151) {
 
-                xPos +=1.05f;
+                //xPos +=1.05f;
                 width+= 27.99f;
                 width7 += 20.325f;
 
@@ -513,15 +509,6 @@ class OrganicAnim {
         yWeightPos = 628.1f;
         widthWeight = 28.2f;
         heightWeight = 45.7f;
-
-        xRacePos = 114.75f;
-        yRacePos = 627.45f;
-        widthRace = 16.85f;
-        heightRace = 45.9f;
-
-        pX = 903.85f;
-        pY = 892.5f;
-        radius = 110.6f;
     }
 
 }

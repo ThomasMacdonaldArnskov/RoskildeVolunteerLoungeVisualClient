@@ -178,74 +178,336 @@ class CardboardAnim {
                 xPos = 1318.05f;
                 yPos = 628.2f;
                 width = 7f;
-                height= 44.2f;
+                height = 44.2f;
 
                 x2Pos = 1441.7f;
                 y2Pos = 632.9f;
-                width = 7f;
-                height = 39.05f;
+                width2 = 7f;
+                height2 = 39.05f;
 
             } else if (counter >= 151 && counter < 155) {
 
                 yPos -= 32.08f;
-
-                g.fillRect(xPos,yPos,width,height);
-                g.fillRect(x7Pos, y7Pos, width7, height7);
-
-
-            } else if (counter >= 155 && counter < 162) {
-
-                yPos -= 32.08f;
-
-                g.fillRect(xPos,yPos,width,height);
-                g.fillRect(x7Pos, y7Pos, width7, height7);
+                height += 7.95f;
+                height2 += 15.43f;
 
 
-            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            else if (counter >= 263 && counter < 282) {
-
-                height2 += 11.2f;
-
+                g.fillRect(xPos, yPos, width, height);
                 g.fillRect(x2Pos, y2Pos, width2, height2);
 
-                x4Pos = 811.15f;
-                y4Pos = 309f;
-                width4 = 298.4f;
-                height4 = 298.4f;
+                g.fillRect(x7Pos, y7Pos, width7, height7);
 
-            } else if (counter >= 282 && counter < 297) {
+                x3Pos = 1435.9f;
+                y3Pos = 721.3f;
+                width3 = 6.8f;
+                height3 = 41.7f;
 
-                x4Pos -= 12.86;
-                y4Pos -= 12.86;
-                width4 += 25.92;
-                height4 += 25.92;
 
-                g.fillOval(x4Pos, y4Pos, width4, height4);
+            } else if (counter >= 155 && counter < 160) {
 
-            } else if (counter >= 297 && counter < 312) {
+                yPos -= 32.08f;
+                height += 7.95f;
+                y2Pos += 29.475f;
+                height2 -= 29.475f;
+                x3Pos -= 11.94f;
+                width3 += 11.94f;
 
-                g.fillOval(x4Pos, y4Pos, width4, height4);
+                g.fillRect(xPos, yPos, width, height);
+                g.fillRect(x2Pos, y2Pos, width2, height2);
+                g.fillRect(x3Pos, y3Pos, width3, height3);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
 
-            } else if (counter >= 312 && counter < 323) {
+            } else if (counter >= 160 && counter < 163) {
 
-                Color alphacontrol = new Color(40, 118, 40, alpha);
+                yPos -= 32.08f;
+                height += 7.95f;
+                x3Pos -= 11.94f;
+                width3 += 11.94f;
+                widthWeight += 14.31f;
+
+                g.fillRect(xPos, yPos, width, height);
+                g.fillRect(x2Pos, y2Pos, width2, height2);
+                g.fillRect(x3Pos, y3Pos, width3, height3);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+
+            } else if (counter >= 163 && counter < 175) {
+
+                x3Pos -= 71.93f;
+                widthWeight += 14.31f;
+
+                g.fillRect(x3Pos, y3Pos, width3, height3);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+
+                x4Pos = 471.7f;
+                y4Pos = 735.25f;
+                width4 = 7f;
+                height4 = 12.45f;
+            } else if (counter >= 175 && counter < 179) {
+
+                width3 -= 19f;
+                y4Pos -= 16.7f;
+                height4 += 16.7;
+                xWeightPos += 9.01f;
+
+                g.fillRect(x3Pos, y3Pos, width3, height3);
+                g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+
+                x5Pos = 452.15f;
+                y5Pos = 662.75f;
+                width5 = 47.2f;
+                height5 = 10.85f;
+
+            } else if (counter >= 179 && counter < 184) {
+
+                height4 -= 14.61;
+                width5 += 55.63f;
+                x5Pos -= 40.15f;
+                y5Pos -= 3.8375f;
+                height5 += 3.8375f;
+                xWeightPos += 9.01f;
+
+                g.fillRect(x5Pos, y5Pos, width5, height5);
+                g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+
+                x6Pos = 131.75f;
+                y6Pos = 624.4f;
+                width6 = 5;
+                height6 = 49f;
+
+            } else if (counter >= 184 && counter < 187) {
+
+                width5 += 55.63f;
+                x5Pos -= 40.15f;
+                height5 += 3.8375f;
+                y5Pos -= 3.8375f;
+                xWeightPos += 9.01f;
+
+                g.fillRect(x5Pos, y5Pos, width5, height5);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+
+            } else if (counter >= 187 && counter < 194) {
+
+                width6 += 69.53f;
+                xWeightPos += 9.01f;
+
+                g.fillRect(x5Pos, y5Pos, width5, height5);
+                g.fillRect(x6Pos, y6Pos, width6, height6);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+
+
+                x2Pos = 1289f;
+                y2Pos = 653.8f;
+                width2 = 86.8f;
+                height2 = 5.25f;
+
+
+                x3Pos = 508.7f;
+                y3Pos = 652.55f;
+                width3 = 115f;
+                height3 = 8.2f;
+
+            } else if (counter >= 194 && counter < 197) {
+
+                xWeightPos += 9.01f;
+                x2Pos -= 8.85f;
+                x3Pos += 8.85f;
+
+                g.fillRect(x2Pos, y2Pos, width2, height2);
+                g.fillRect(x3Pos, y3Pos, width3, height3);
+                g.fillRect(x5Pos, y5Pos, width5, height5);
+                g.fillRect(x6Pos, y6Pos, width6, height6);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+
+                x4Pos = 1254.55f;
+                y4Pos = 653.35f;
+                width4 = 7f;
+                height4 = 5.95f;
+
+                xRacePos = 657.35f;
+                yRacePos = 653.35f;
+                widthRace = 7;
+                heightRace = 21.4f;
+
+            } else if (counter >= 197 && counter < 202) {
+
+                xWeightPos += 9.01f;
+                width2 -= 7.75f;
+                width3 -= 7.75f;
+                x3Pos += 11f;
+                height4 += 7.79f;
+                y4Pos -= 7.79f;
+                heightRace += 7.79f;
+                yRacePos -= 7.79f;
+
+                g.fillRect(x2Pos, y2Pos, width2, height2);
+                g.fillRect(x3Pos, y3Pos, width3, height3);
+                g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
+
+
+                g.fillRect(x5Pos, y5Pos, width5, height5);
+                g.fillRect(x6Pos, y6Pos, width6, height6);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+
+            } else if (counter >= 202 && counter < 212) {
+
+                width2 -= 7.75f;
+                width3 -= 7.75f;
+                x3Pos += 7.75f;
+                height4 += 7.79f;
+                y4Pos -= 7.79f;
+                heightRace += 7.79f;
+                yRacePos -= 7.79f;
+
+                g.fillRect(x2Pos, y2Pos, width2, height2);
+                g.fillRect(x3Pos, y3Pos, width3, height3);
+                g.fillRect(x5Pos, y5Pos, width5, height5);
+                g.fillRect(x6Pos, y6Pos, width6, height6);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+                g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+            } else if (counter >= 212 && counter < 229) {
+
+                y4Pos -= 14.78f;
+                yRacePos -= 14.78f;
+
+                g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
+                g.fillRect(x5Pos, y5Pos, width5, height5);
+                g.fillRect(x6Pos, y6Pos, width6, height6);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+
+                xPos = 1254.75f;
+                yPos = 288.6f;
+                width = 7.65f;
+                height = 5.25f;
+
+                x2Pos = 657f;
+                y2Pos = 288.6f;
+                width2 = 7.65f;
+                height2 = 5.25f;
+
+            } else if (counter >= 229 && counter < 240) {
+
+                height4 -= 10f;
+                heightRace -= 10f;
+                xPos -= 6.97f;
+                width += 6.97f;
+                width2 += 6.97;
+
+                g.fillRect(xPos, yPos, width, height);
+                g.fillRect(x2Pos, y2Pos, width2, height2);
+                g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
+                g.fillRect(x5Pos, y5Pos, width5, height5);
+                g.fillRect(x6Pos, y6Pos, width6, height6);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+
+            } else if (counter >= 240 && counter < 245) {
+
+                xPos -= 34.11f;
+                x2Pos += 34.11f;
+
+                g.fillRect(xPos, yPos, width, height);
+                g.fillRect(x2Pos, y2Pos, width2, height2);
+                g.fillRect(x5Pos, y5Pos, width5, height5);
+                g.fillRect(x6Pos, y6Pos, width6, height6);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+
+                x4Pos = 1016.4f;
+                y4Pos = 286.3f;
+                width4 = 7f;
+                height4 = 8.9f;
+
+                xRacePos = 895.3f;
+                yRacePos = 285f;
+                widthRace = 7;
+                heightRace = 8.9f;
+
+            } else if (counter >= 245 && counter < 249) {
+
+                width -= 15.44f;
+                width2 -=15.44f;
+                x2Pos += 15.44f;
+                height4 += 6.71f;
+                heightRace += 6.71f;
+
+                g.fillRect(xPos, yPos, width, height);
+                g.fillRect(x2Pos, y2Pos, width2, height2);
+                g.fillRect(x5Pos, y5Pos, width5, height5);
+                g.fillRect(x6Pos, y6Pos, width6, height6);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+                g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
+
+
+                x3Pos = 802.3f;
+                y3Pos = 307.2f;
+                width3 = 312.05f;
+                height3 = 2.4f;
+
+            } else if (counter >= 249 && counter < 252) {
+
+                height3 += 11.2f;
+                height4 += 6.71f;
+                heightRace += 6.71f;
+
+                g.fillRect(x3Pos, y3Pos, width3, height3);
+                g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
+
+
+
+            } else if (counter >= 252 && counter < 277) {
+
+                y4Pos +=3.63f;
+                yRacePos += 3.63f;
+                height3 += 11.2f;
+
+                g.fillRect(x3Pos, y3Pos, width3, height3);
+                g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
+
+                xPos = 811.15f;
+                yPos = 309f;
+                width = 298.4f;
+                height = 298.4f;
+
+            } else if (counter >= 277 && counter < 292) {
+
+                xPos -= 12.87;
+                yPos -= 12.87;
+                width += 25.92;
+                height += 25.92;
+
+
+                g.fillOval(xPos, yPos, width, height);
+
+            } else if (counter >= 292 && counter < 305) {
+
+                g.fillOval(xPos, yPos, width, height);
+
+            } else if (counter >= 305 && counter < 315) {
+
+                Color alphacontrol = new Color(73, 73, 163, alpha);
                 g.setColor(alphacontrol);
-                g.fillOval(x4Pos, y4Pos, width4, height4);
+                g.fillOval(xPos, yPos, width, height);
                 alpha -= 23;
 
 
@@ -313,10 +575,10 @@ class CardboardAnim {
         width7 = 44.4f;
         height7 = 48.1f;
 
-        xWeightPos = 1296.70f; //HERE
-        yWeightPos = 628.1f;
-        widthWeight = 28.2f;
-        heightWeight = 45.7f;
+        xWeightPos = 1324.55f;
+        yWeightPos = 306f;
+        widthWeight = 20.5f;
+        heightWeight = 98.05f;
 
         xRacePos = 114.75f;
         yRacePos = 627.45f;
