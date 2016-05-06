@@ -8,7 +8,7 @@ import com.sun.org.apache.xpath.internal.operations.Or;
 import org.newdawn.slick.*;
 
 public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
-    private Image wires, bg, toplayer;
+    private Image wires, bg, toplayer, colourScheme;
 
     private static final int LISTSIZE = 10;
 
@@ -39,9 +39,17 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
     @Override
     public void init(GameContainer gc) throws SlickException {
 
-        wires = new Image("assets/wires.png");
+        //DARK COLOUR SCHEME
+        /*wires = new Image("assets/wires.png");
         bg = new Image("assets/bg.png");
-        toplayer = new Image("assets/toplayer.png");
+        toplayer = new Image("assets/toplayer.png");*/
+
+        //LIGHT COLOUR SCHEME
+        colourScheme = new Image("assets/lightbluescheme.png");
+        wires = new Image("assets/lightblueschemewires.png");
+        bg = new Image("assets/lightblueschemebackground.png");
+        toplayer = new Image("assets/lightblueschemeoverlay.png");
+
 
         ListsAhoy();
     }
@@ -145,6 +153,12 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
 
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException {
+
+        //LAYER 0 : BACKGROUND
+        /**
+         * Completely monocoloured - Just to account for pixel mistakes
+         */
+        g.drawImage(colourScheme,0,0);
 
         //LAYER 1 : WIRES
         g.drawImage(wires, 0, 0);
