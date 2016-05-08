@@ -1,6 +1,7 @@
 package example;
 
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
@@ -86,6 +87,8 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
     private float coffeeBarActivated;
     private float shuffleBoardActivated;
 
+    private DatabaseHandler databaseHandler;
+
     TrueTypeFont font;
 
     private RoskildeVolunteerLoungeVisualClient(String gamename) {
@@ -106,6 +109,17 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
         /*wires = new Image("assets/wires.png");
         bg = new Image("assets/bg.png");
         toplayer = new Image("assets/toplayer.png");*/
+
+        // initialize SerialListener
+        SerialListener main = new SerialListener(this);
+        main.initialize();
+        System.out.println("Started SerialListener");
+
+        try {
+            databaseHandler = new DatabaseHandler("D:/users/anders/documents");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         //LIGHT COLOUR SCHEME
         colourScheme = new Image("assets/lightbluescheme.png");
@@ -174,40 +188,58 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
      * Methods for starting the animations... Obviously shouldn't be based on keyboard input
      ***********************************/
 
-    private void startFlammable(GameContainer gc) {
-        if (gc.getInput().isKeyPressed(Input.KEY_2)) {
+    private void startFlammable() {
+        // keyboard control
+        /*if (gc.getInput().isKeyPressed(Input.KEY_1)) {
             prevLastUsed = lastUsed;
             lastUsed = 0;
             selector(0);
             flamList.get(currentSelectionFlame).setRunning(true);
+        }*/
 
-            //ONLY FOR TESTING
-            graphTester();
-        }
+        prevLastUsed = lastUsed;
+        lastUsed = 0;
+        selector(0);
+        flamList.get(currentSelectionFlame).setRunning(true);
+
+        // ONLY FOR TESTING
+        graphTester();
     }
 
-    private void startCardboard(GameContainer gc) {
-        if (gc.getInput().isKeyPressed(Input.KEY_3)) {
+    private void startCardboard() {
+        // keyboard control
+        /*if (gc.getInput().isKeyPressed(Input.KEY_1)) {
             prevLastUsed = lastUsed;
-            lastUsed = 1;
-            selector(1);
-            cardList.get(currentSelectionCard).setRunning(true);
+            lastUsed = 0;
+            selector(0);
+            flamList.get(currentSelectionFlame).setRunning(true);
+        }*/
 
-            //ONLY FOR TESTING
-            graphTester();
-        }
+        prevLastUsed = lastUsed;
+        lastUsed = 1;
+        selector(1);
+        cardList.get(currentSelectionCard).setRunning(true);
+
+        // ONLY FOR TESTING
+        graphTester();
     }
 
-    private void startOrganic(GameContainer gc) {
-        if (gc.getInput().isKeyPressed(Input.KEY_1)) {
+    private void startOrganic() {
+        // keyboard control
+        /*if (gc.getInput().isKeyPressed(Input.KEY_1)) {
             prevLastUsed = lastUsed;
-            lastUsed = 2;
-            selector(2);
-            organList.get(currentSelectionOrgan).setRunning(true);
+            lastUsed = 0;
+            selector(0);
+            flamList.get(currentSelectionFlame).setRunning(true);
+        }*/
 
-            //ONLY FOR TESTING
-            graphTester();
-        }
+        prevLastUsed = lastUsed;
+        lastUsed = 2;
+        selector(2);
+        organList.get(currentSelectionOrgan).setRunning(true);
+
+        // ONLY FOR TESTING
+        graphTester();
     }
 
 
@@ -282,9 +314,9 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
 
     @Override
     public void update(GameContainer gc, int i) throws SlickException {
-        startFlammable(gc);
+        /*startFlammable(gc);
         startCardboard(gc);
-        startOrganic(gc);
+        startOrganic(gc);*/
 
         for (int j = 0; j < LISTSIZE; j++) {
             if (cardList.get(j).isUpdatePie() || organList.get(j).isUpdatePie() || flamList.get(j).isUpdatePie())
@@ -439,6 +471,26 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
             appgc.start();
         } catch (SlickException ex) {
             Logger.getLogger(RoskildeVolunteerLoungeVisualClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void onReceive(String msg) {
+        String[] splitMessage = msg.split(",");
+
+        double weight = Double.parseDouble(splitMessage[1]);
+        System.out.println("Weight is: " + weight);
+
+        databaseHandler.addItem(splitMessage[0], weight);
+        System.out.println("Added to database!");
+
+        if (splitMessage[0].equals("Flammable")) {
+            startFlammable();
+        } else if (splitMessage[0].equals("Cardboard")) {
+            startCardboard();
+        } else if (splitMessage[0].equals("Organic")) {
+            startOrganic();
+        } else {
+            System.out.println("Someone is trying to hack our wonderful system!");
         }
     }
 }
