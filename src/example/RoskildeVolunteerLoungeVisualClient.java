@@ -1,16 +1,27 @@
 package example;
 
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
+
+import java.awt.Font;
+
+import org.newdawn.slick.Color;
+import org.newdawn.slick.TrueTypeFont;
+import org.newdawn.slick.util.ResourceLoader;
+
 import org.newdawn.slick.*;
 
 public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
+
     private Image wires, bg, toplayer, colourScheme;
 
     private static final int LISTSIZE = 10;
+
+    private boolean antiAlias = true;
 
 
     private ArrayList<FlammableAnim> flamList;
@@ -24,6 +35,58 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
     private int currentSelectionOrgan = 0;
     private int currentSelectionCard = 0;
 
+
+    //100 PERCENT VALUES FOR GRAPHS
+    private final float oneHundredPercent = 297f;
+    private final float middleHundredPercent = 266f;
+
+    //X, Y AND WIDTH VALUES FOR GRAPHS
+
+    //TEAM KAFFEBAR
+    private final float xPos = 191.99f;
+    private float yPos;
+    private final float width = 155f;
+    private float coffeeBarHeight = 0;
+    private float coffeeBarOffset = 310f;
+
+    //TEAM SHUFFLEBOARD
+    private final float x2Pos = 408f;
+    private float y2Pos;
+    private final float width2 = 155f;
+    private float shuffleBoardHeight;
+    private float shuffleBoardOffset;
+
+    private float combinedActivations;
+
+
+    //MIDDLE DIAGRAM
+
+    private final float middleY = 331f;
+    private final float middleWidth = 89.32f;
+
+    private final float cardboardX = 1015.67f;
+    private final float organicX = 830f;
+    private final float flamX = 923.34f;
+    private float cardBoardHeight;
+    private float organicHeight;
+    private float flamHeight;
+
+    private float flamOffset;
+    private float organicOffset;
+    private float cardboardOffset;
+
+    private float combinedWeights;
+
+    private float organW;
+    private float cardBoardW;
+    private float flamW;
+    private float prevOrganW;
+    private float prevCardBoardW;
+    private float prevFlamW;
+    private float coffeeBarActivated;
+    private float shuffleBoardActivated;
+
+    TrueTypeFont font;
 
     private RoskildeVolunteerLoungeVisualClient(String gamename) {
         super(gamename);
@@ -46,47 +109,109 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
 
         //LIGHT COLOUR SCHEME
         colourScheme = new Image("assets/lightbluescheme.png");
-        wires = new Image("assets/lightblueschemewires.png");
-        bg = new Image("assets/lightblueschemebackground.png");
-        toplayer = new Image("assets/lightblueschemeoverlay.png");
+        wires = new Image("assets/lb_wir.png");
+        bg = new Image("assets/lb_sur.png");
+        toplayer = new Image("assets/lb_ov.png");
 
-
+        loadFont();
         ListsAhoy();
+        LoadValues();
+        updatePie();
+        updateRace();
+
+    }
+
+    private void updateWeight() {
+        prevCardBoardW = cardBoardW;
+        prevFlamW = flamW;
+        prevOrganW = organW;
+    }
+
+    private void updatePie() {
+        combinedWeights = flamW + organW + cardBoardW;
+        flamHeight = (flamW / combinedWeights) * middleHundredPercent;
+        organicHeight = (organW / combinedWeights) * middleHundredPercent;
+        cardBoardHeight = (cardBoardW / combinedWeights) * middleHundredPercent;
+
+        flamOffset = middleHundredPercent - flamHeight;
+        organicOffset = middleHundredPercent - organicHeight;
+        cardboardOffset = middleHundredPercent - cardBoardHeight;
+    }
+
+    private void displayPie(Graphics g) {
+        Color flamred = new Color(198, 55, 32, 255);
+        Color cardblue = new Color(73, 73, 163, 255);
+        Color organgreen = new Color(40, 118, 40, 255);
+
+        g.setColor(cardblue);
+        g.fillRect(cardboardX, middleY + cardboardOffset, middleWidth, cardBoardHeight);
+        g.setColor(organgreen);
+        g.fillRect(organicX, middleY + organicOffset, middleWidth, organicHeight);
+        g.setColor(flamred);
+        g.fillRect(flamX, middleY + flamOffset, middleWidth, flamHeight);
+    }
+
+    private void updateRace() {
+        combinedActivations = shuffleBoardActivated + coffeeBarActivated;
+        shuffleBoardHeight = (shuffleBoardActivated / combinedActivations) * oneHundredPercent;
+        coffeeBarHeight = (coffeeBarActivated / combinedActivations) * oneHundredPercent;
+        shuffleBoardOffset = oneHundredPercent - shuffleBoardHeight;
+        coffeeBarOffset = oneHundredPercent - coffeeBarHeight;
+    }
+
+    private void displayRace(Graphics g) {
+        Color raceColor = new Color(55, 80, 85);
+        g.setColor(raceColor);
+
+        //TEAM KAFFEBAR
+        g.fillRect(xPos, yPos + coffeeBarOffset, width, coffeeBarHeight);
+
+        //TEAM SHUFFLEBOARD
+        g.fillRect(x2Pos, y2Pos + shuffleBoardOffset, width2, shuffleBoardHeight);
     }
 
     /***********************************
      * Methods for starting the animations... Obviously shouldn't be based on keyboard input
-     *
      ***********************************/
 
     private void startFlammable(GameContainer gc) {
-        if (gc.getInput().isKeyPressed(Input.KEY_1)) {
+        if (gc.getInput().isKeyPressed(Input.KEY_2)) {
             prevLastUsed = lastUsed;
             lastUsed = 0;
             selector(0);
             flamList.get(currentSelectionFlame).setRunning(true);
+
+            //ONLY FOR TESTING
+            graphTester();
         }
     }
 
     private void startCardboard(GameContainer gc) {
-        if (gc.getInput().isKeyPressed(Input.KEY_2)) {
+        if (gc.getInput().isKeyPressed(Input.KEY_3)) {
             prevLastUsed = lastUsed;
             lastUsed = 1;
             selector(1);
             cardList.get(currentSelectionCard).setRunning(true);
+
+            //ONLY FOR TESTING
+            graphTester();
         }
     }
 
     private void startOrganic(GameContainer gc) {
-        if (gc.getInput().isKeyPressed(Input.KEY_3)) {
+        if (gc.getInput().isKeyPressed(Input.KEY_1)) {
             prevLastUsed = lastUsed;
             lastUsed = 2;
             selector(2);
             organList.get(currentSelectionOrgan).setRunning(true);
+
+            //ONLY FOR TESTING
+            graphTester();
         }
     }
 
-    public void selector(int i) {
+
+    private void selector(int i) {
 
         if (i == 0)
             currentSelectionFlame = (currentSelectionFlame + 1) % LISTSIZE;
@@ -99,10 +224,21 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
 
     }
 
+    private void graphTester() {
+        Random rand = new Random();
+
+        coffeeBarActivated = rand.nextInt(1000);
+        shuffleBoardActivated = rand.nextInt(1000);
+
+        organW = rand.nextInt(1000);
+        cardBoardW = rand.nextInt(1000);
+        flamW = rand.nextInt(1000);
+    }
+
     /**
      * Changes the order in which the animations are displayed based on what was last activated
      *
-     * @param g Slick Graphics Elelemt
+     * @param g Slick Graphics Element
      */
     private void displayOrder(Graphics g) {
         if (lastUsed == 0 && prevLastUsed == 1) {
@@ -149,6 +285,16 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
         startFlammable(gc);
         startCardboard(gc);
         startOrganic(gc);
+
+        for (int j = 0; j < LISTSIZE; j++) {
+            if (cardList.get(j).isUpdatePie() || organList.get(j).isUpdatePie() || flamList.get(j).isUpdatePie())
+                updatePie();
+            if (cardList.get(j).isUpdateTrashRace() || organList.get(j).isUpdateTrashRace() || flamList.get(j).isUpdateTrashRace())
+                updateRace();
+            if (cardList.get(j).isUpdateWeight() || organList.get(j).isUpdateWeight() || flamList.get(j).isUpdateWeight()) {
+                updateWeight();
+            }
+        }
     }
 
     @Override
@@ -158,7 +304,7 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
         /**
          * Completely monocoloured - Just to account for pixel mistakes
          */
-        g.drawImage(colourScheme,0,0);
+        g.drawImage(colourScheme, 0, 0);
 
         //LAYER 1 : WIRES
         g.drawImage(wires, 0, 0);
@@ -176,12 +322,39 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
         //cardboardAnim.animation(g);
 
         //LAYER 4 : VISUAL COMPONENTS SUCH AS THE GRAPHS
+        displayRace(g);
+        displayPie(g);
+        font.drawString(1587,338,""+prevCardBoardW+" KG.", Color.white);
+        font.drawString(1587,441,""+prevOrganW+" KG.", Color.white);
+        font.drawString(1587,542,""+prevFlamW+" KG.", Color.white);
+
+        //LAYER 5 : GRAPH OVERLAYS
         g.drawImage(toplayer, 0, 0);
 
-        //LAYER 5 : OVERLAY ANIMATIONS (NODE POPS) WHEN THEY ARE DONE AT SOME POINT
+        //LAYER 6 : OVERLAY ANIMATIONS (NODE POPS) WHEN THEY ARE DONE AT SOME POINT
         //flamAnim.animationOverlay(g);
         //flamAnim2.animationOverlay(g);
 
+
+
+    }
+
+
+    public void update() {
+    }
+
+    private void loadFont() {
+
+        try {
+            InputStream inputStream	= ResourceLoader.getResourceAsStream("assets/dejavu.ttf");
+
+            Font awtFont = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+            awtFont = awtFont.deriveFont(24f); // set font size
+            font = new TrueTypeFont(awtFont, antiAlias);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -224,6 +397,36 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
         cardList.add(7, new CardboardAnim());
         cardList.add(8, new CardboardAnim());
         cardList.add(9, new CardboardAnim());
+    }
+
+    private void LoadValues() {
+        //X, Y AND WIDTH VALUES FOR GRAPHS
+
+        //TEAM KAFFEBAR
+        yPos = 310f;
+        coffeeBarHeight = 0;
+        coffeeBarOffset = 310f;
+
+        //TEAM SHUFFLEBOARD
+        y2Pos = 310f;
+        shuffleBoardHeight = 0;
+        shuffleBoardOffset = 310f;
+
+        //MIDDLE DIAGRAM
+        cardBoardHeight = 0;
+        organicHeight = 0;
+        flamHeight = 0;
+
+        flamOffset = 310;
+        organicOffset = 310;
+        cardboardOffset = 310;
+
+        //ONLY FOR TESTING
+        organW = 2000;
+        cardBoardW = 900;
+        flamW = 4000;
+        coffeeBarActivated = 150;
+        shuffleBoardActivated = 100;
     }
 
     public static void main(String[] args) {

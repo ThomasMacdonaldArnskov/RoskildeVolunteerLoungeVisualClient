@@ -13,7 +13,7 @@ class CardboardAnim {
     private static final Color cardblue = new Color(73, 73, 163, 255);
 
     //Active or not
-    private boolean running;
+    private boolean running, updateTrashRace, updatePie, updateWeight;
 
     //FPS counter
     private int counter;
@@ -41,16 +41,19 @@ class CardboardAnim {
 
     }
 
-    public void updateTrashRace() {
+    private void updateTrashRace() {
+        updateTrashRace = true;
         System.out.println("*MODEM SOUND* updated the race parameters");
     }
 
-    public void updateWeight() {
+    private void updateWeight() {
         System.out.println("*MODEM SOUND* updated the weight parameters");
+        updateWeight = true;
     }
 
-    public void updatePieChart() {
+    private void updatePieChart() {
         System.out.println("*MODEM SOUND* updated the pie chart");
+        updatePie = true;
     }
 
     /**************************************
@@ -178,8 +181,8 @@ class CardboardAnim {
 
             } else if (counter >= 135 && counter < 151) {
 
-                width7 += 21.1f;
-                x7Pos -= 21.1f;
+                width7 += 21f;
+                x7Pos -= 21f;
 
                 g.fillRect(x7Pos, y7Pos, width7, height7);
 
@@ -193,7 +196,7 @@ class CardboardAnim {
                 width2 = 7f;
                 height2 = 39.05f;
 
-            } else if (counter >= 151 && counter < 155) {
+            } else if (counter >= 151 && counter < 152) {
 
                 yPos -= 32.08f;
                 height += 7.95f;
@@ -211,7 +214,26 @@ class CardboardAnim {
 
                 updateWeight();
 
-            } else if (counter >= 155 && counter < 160) {
+            }
+            else if (counter >= 152 && counter < 155) {
+
+                yPos -= 32.08f;
+                height += 7.95f;
+                height2 += 15.43f;
+
+                g.fillRect(xPos, yPos, width, height);
+                g.fillRect(x2Pos, y2Pos, width2, height2);
+
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+
+                x3Pos = 1435.9f;
+                y3Pos = 721.3f;
+                width3 = 6.8f;
+                height3 = 41.7f;
+                updateWeight = false;
+
+            }
+            else if (counter >= 155 && counter < 160) {
 
                 yPos -= 32.08f;
                 height += 7.95f;
@@ -252,6 +274,7 @@ class CardboardAnim {
                 y4Pos = 735.25f;
                 width4 = 7f;
                 height4 = 12.45f;
+
             } else if (counter >= 175 && counter < 179) {
 
                 width3 -= 19f;
@@ -322,7 +345,7 @@ class CardboardAnim {
                 width3 = 115f;
                 height3 = 8.2f;
 
-            } else if (counter >= 194 && counter < 197) {
+            } else if (counter >= 194 && counter < 195) {
 
                 xWeightPos += 9.01f;
                 x2Pos -= 8.85f;
@@ -348,7 +371,33 @@ class CardboardAnim {
 
                 updateTrashRace();
 
-            } else if (counter >= 197 && counter < 202) {
+            }
+            else if (counter >= 195 && counter < 197) {
+
+                xWeightPos += 9.01f;
+                x2Pos -= 8.85f;
+                x3Pos += 8.85f;
+
+                g.fillRect(x2Pos, y2Pos, width2, height2);
+                g.fillRect(x3Pos, y3Pos, width3, height3);
+                g.fillRect(x5Pos, y5Pos, width5, height5);
+                g.fillRect(x6Pos, y6Pos, width6, height6);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+
+                x4Pos = 1254.55f;
+                y4Pos = 653.35f;
+                width4 = 7f;
+                height4 = 5.95f;
+
+                xRacePos = 657.35f;
+                yRacePos = 653.35f;
+                widthRace = 7;
+                heightRace = 21.4f;
+                updateTrashRace = false;
+            }
+            else if (counter >= 197 && counter < 202) {
 
                 xWeightPos += 9.01f;
                 width2 -= 7.75f;
@@ -467,9 +516,9 @@ class CardboardAnim {
                 g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
 
 
-                x3Pos = 802.3f;
-                y3Pos = 307.2f;
-                width3 = 312.05f;
+                x3Pos = 762.3f;
+                y3Pos = 310.2f;
+                width3 = 402.05f;
                 height3 = 2.4f;
 
             } else if (counter >= 249 && counter < 252) {
@@ -481,8 +530,6 @@ class CardboardAnim {
                 g.fillRect(x3Pos, y3Pos, width3, height3);
                 g.fillRect(x4Pos, y4Pos, width4, height4);
                 g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
-
-
 
             } else if (counter >= 252 && counter < 277) {
 
@@ -499,7 +546,7 @@ class CardboardAnim {
                 width = 298.4f;
                 height = 298.4f;
 
-            } else if (counter >= 277 && counter < 292) {
+            } else if (counter >= 277 && counter < 278) {
 
                 xPos -= 12.87;
                 yPos -= 12.87;
@@ -510,7 +557,19 @@ class CardboardAnim {
 
                 updatePieChart();
 
-            } else if (counter >= 292 && counter < 305) {
+            }else if (counter >= 278 && counter < 292) {
+
+                xPos -= 12.87;
+                yPos -= 12.87;
+                width += 25.92;
+                height += 25.92;
+
+                g.fillOval(xPos, yPos, width, height);
+
+                updatePie = false;
+
+            }
+            else if (counter >= 292 && counter < 305) {
 
                 g.fillOval(xPos, yPos, width, height);
 
@@ -541,6 +600,18 @@ class CardboardAnim {
 
     void setRunning(boolean bool) {
         running = bool;
+    }
+
+    boolean isUpdateTrashRace() {
+        return updateTrashRace;
+    }
+
+    boolean isUpdatePie() {
+        return updatePie;
+    }
+
+    boolean isUpdateWeight() {
+        return updateWeight;
     }
 
 
@@ -582,9 +653,9 @@ class CardboardAnim {
         height6 = 78.45f;
 
         x7Pos = 1744.7f;
-        y7Pos = 625.9f;
+        y7Pos = 627.3f;
         width7 = 44.4f;
-        height7 = 48.1f;
+        height7 = 47.1f;
 
         xWeightPos = 1324.55f;
         yWeightPos = 306f;

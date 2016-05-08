@@ -13,7 +13,7 @@ class OrganicAnim {
     private static final Color organgreen = new Color(40, 118, 40, 255);
 
     //Active or not
-    private boolean running;
+    private boolean running, updateTrashRace, updatePie, updateWeight;
 
     //FPS counter
     private int counter;
@@ -42,14 +42,17 @@ class OrganicAnim {
 
     public void updateTrashRace() {
         System.out.println("*MODEM SOUND* updated the race parameters");
+        updateTrashRace = true;
     }
 
     public void updateWeight() {
         System.out.println("*MODEM SOUND* updated the weight parameters");
+        updateWeight = true;
     }
 
     public void updatePieChart() {
         System.out.println("*MODEM SOUND* updated the pie chart");
+        updatePie = true;
     }
 
     /**************************************
@@ -122,7 +125,7 @@ class OrganicAnim {
                 y3Pos -= 8.24f;
                 height3 -= 3.56f;
                 height4 -= 13.6f;
-                y5Pos -=7.175f;
+                y5Pos -= 7.175f;
                 height5 += 4.53f;
                 g.fillRect(x3Pos, y3Pos, width3, height3);
                 g.fillRect(x4Pos, y4Pos, width4, height4);
@@ -132,7 +135,7 @@ class OrganicAnim {
 
                 y3Pos -= 8.24f;
                 height3 -= 3.56f;
-                y5Pos -=7.175f;
+                y5Pos -= 7.175f;
                 height5 += 4.53f;
 
                 g.fillRect(x3Pos, y3Pos, width3, height3);
@@ -143,18 +146,18 @@ class OrganicAnim {
 
                 x5Pos -= 24.52f;
 
-                g.fillRect(x5Pos, y5Pos, width5,height5);
+                g.fillRect(x5Pos, y5Pos, width5, height5);
 
             } else if (counter >= 109 && counter < 116) {
 
                 x5Pos -= 24.52f;
                 y5Pos = 787.45f;
-                g.fillRect(x5Pos, y5Pos, width5,height5);
+                g.fillRect(x5Pos, y5Pos, width5, height5);
 
             } else if (counter >= 116 && counter < 126) {
                 x5Pos -= 24.52f;
                 y5Pos = 767.3f;
-                g.fillRect(x5Pos, y5Pos, width5,height5);
+                g.fillRect(x5Pos, y5Pos, width5, height5);
 
             } else if (counter >= 126 && counter < 130) {
 
@@ -162,7 +165,7 @@ class OrganicAnim {
                 y6Pos -= 37.03f;
 
 
-                g.fillRect(x5Pos, y5Pos, width5,height5);
+                g.fillRect(x5Pos, y5Pos, width5, height5);
                 g.fillRect(x6Pos, y6Pos, width6, height6);
 
 
@@ -185,7 +188,7 @@ class OrganicAnim {
 
             } else if (counter >= 135 && counter < 151) {
 
-                width+= 27.99f;
+                width += 27.99f;
                 width7 += 20.325f;
 
                 g.fillRect(x7Pos, y7Pos, width7, height7);
@@ -206,20 +209,29 @@ class OrganicAnim {
                 width4 = 7f;
                 height4 = 27.7f;
 
-            } else if (counter >= 151 && counter < 155) {
+            } else if (counter >= 151 && counter < 152) {
                 y2Pos += 11.4125f;
                 height2 -= 11.4f;
                 width3 += 13.3625f;
 
                 g.fillRect(xPos, yPos, width, height);
-                g.fillRect(x2Pos,y2Pos,width2,height2);
-                g.fillRect(x3Pos,y3Pos,width3,height3);
+                g.fillRect(x2Pos, y2Pos, width2, height2);
+                g.fillRect(x3Pos, y3Pos, width3, height3);
 
                 updateTrashRace();
-            }
-            else if (counter >= 155 && counter < 159) {
+            } else if (counter >= 152 && counter < 155) {
+                y2Pos += 11.4125f;
+                height2 -= 11.4f;
                 width3 += 13.3625f;
-                g.fillRect(x3Pos,y3Pos,width3,height3);
+
+                g.fillRect(xPos, yPos, width, height);
+                g.fillRect(x2Pos, y2Pos, width2, height2);
+                g.fillRect(x3Pos, y3Pos, width3, height3);
+
+                updateTrashRace = false;
+            } else if (counter >= 155 && counter < 159) {
+                width3 += 13.3625f;
+                g.fillRect(x3Pos, y3Pos, width3, height3);
                 g.fillRect(xPos, yPos, width, height);
 
             } else if (counter >= 159 && counter < 168) {
@@ -227,7 +239,7 @@ class OrganicAnim {
                 x3Pos += 77.13f;
 
                 g.fillRect(xPos, yPos, width, height);
-                g.fillRect(x3Pos,y3Pos,width3,height3);
+                g.fillRect(x3Pos, y3Pos, width3, height3);
 
             } else if (counter >= 168 && counter < 172) {
 
@@ -237,24 +249,21 @@ class OrganicAnim {
                 y4Pos -= 10.88f;
 
                 g.fillRect(xPos, yPos, width, height);
-                g.fillRect(x3Pos,y3Pos,width3,height3);
-                g.fillRect(x4Pos,y4Pos,width4,height4);
+                g.fillRect(x3Pos, y3Pos, width3, height3);
+                g.fillRect(x4Pos, y4Pos, width4, height4);
 
-            }
-            else if (counter >= 172 && counter < 176) {
+            } else if (counter >= 172 && counter < 176) {
 
                 height4 -= 13.05f;
                 widthWeight += 46.48f;
-                g.fillRect(xWeightPos, yWeightPos, widthWeight,heightWeight);
-                g.fillRect(x4Pos,y4Pos,width4,height4);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+                g.fillRect(x4Pos, y4Pos, width4, height4);
                 g.fillRect(xPos, yPos, width, height);
 
-            }
-
-            else if (counter >= 176 && counter < 182) {
+            } else if (counter >= 176 && counter < 182) {
 
                 widthWeight += 46.48f;
-                g.fillRect(xWeightPos, yWeightPos, widthWeight,heightWeight);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
                 g.fillRect(xPos, yPos, width, height);
 
                 x2Pos = 1267.6f;
@@ -272,8 +281,7 @@ class OrganicAnim {
                 width6 = 7f;
                 height6 = 107.8f;
 
-            }
-            else if (counter >= 182 && counter < 191) {
+            } else if (counter >= 182 && counter < 183) {
 
                 y2Pos -= 6.56f;
                 y3Pos -= 6.56f;
@@ -285,7 +293,7 @@ class OrganicAnim {
                 g.fillRect(x3Pos, y3Pos, width3, height3);
                 g.fillRect(x6Pos, y6Pos, width6, height6);
                 g.fillRect(xPos, yPos, width, height);
-                g.fillRect(xWeightPos, yWeightPos, widthWeight,heightWeight);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
 
                 x7Pos = 1337.3f;
                 y7Pos = 408.25f;
@@ -293,8 +301,22 @@ class OrganicAnim {
                 height7 = 100f;
 
                 updateWeight();
-            }
-            else if (counter >= 191 && counter < 195) {
+            } else if (counter >= 183 && counter < 191) {
+
+                y2Pos -= 6.56f;
+                y3Pos -= 6.56f;
+                y6Pos -= 20.66;
+                height2 += 6.75f;
+                height3 += 6.75f;
+
+                g.fillRect(x2Pos, y2Pos, width2, height2);
+                g.fillRect(x3Pos, y3Pos, width3, height3);
+                g.fillRect(x6Pos, y6Pos, width6, height6);
+                g.fillRect(xPos, yPos, width, height);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+
+                updateWeight = false;
+            } else if (counter >= 191 && counter < 195) {
 
                 y2Pos -= 6.56f;
                 y3Pos -= 6.56f;
@@ -308,10 +330,9 @@ class OrganicAnim {
                 g.fillRect(x3Pos, y3Pos, width3, height3);
                 g.fillRect(x6Pos, y6Pos, width6, height6);
                 g.fillRect(x7Pos, y7Pos, width7, height7);
-                g.fillRect(xWeightPos, yWeightPos, widthWeight,heightWeight);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
 
-            }
-            else if (counter >= 195 && counter < 198) {
+            } else if (counter >= 195 && counter < 198) {
 
                 y2Pos -= 6.56f;
                 y3Pos -= 6.56f;
@@ -323,15 +344,14 @@ class OrganicAnim {
                 g.fillRect(x2Pos, y2Pos, width2, height2);
                 g.fillRect(x3Pos, y3Pos, width3, height3);
                 g.fillRect(x7Pos, y7Pos, width7, height7);
-                g.fillRect(xWeightPos, yWeightPos, widthWeight,heightWeight);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
 
-            }
-            else if (counter >= 198 && counter < 215) {
+            } else if (counter >= 198 && counter < 215) {
                 y2Pos -= 16f;
                 y3Pos -= 16f;
                 x7Pos += 4.56f;
 
-                g.fillRect(xWeightPos, yWeightPos, widthWeight,heightWeight);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
                 g.fillRect(xPos, yPos, width, height);
                 g.fillRect(x2Pos, y2Pos, width2, height2);
                 g.fillRect(x3Pos, y3Pos, width3, height3);
@@ -356,7 +376,7 @@ class OrganicAnim {
                 x5Pos += 8.34f;
                 x7Pos += 4.56f;
 
-                g.fillRect(xWeightPos, yWeightPos, widthWeight,heightWeight);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
                 g.fillRect(xPos, yPos, width, height);
                 g.fillRect(x2Pos, y2Pos, width2, height2);
                 g.fillRect(x3Pos, y3Pos, width3, height3);
@@ -370,7 +390,7 @@ class OrganicAnim {
                 x5Pos += 8.34f;
                 x7Pos += 4.52f;
 
-                g.fillRect(xWeightPos, yWeightPos, widthWeight,heightWeight);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
                 g.fillRect(xPos, yPos, width, height);
                 g.fillRect(x4Pos, y4Pos, width4, height4);
                 g.fillRect(x5Pos, y5Pos, width5, height5);
@@ -395,7 +415,7 @@ class OrganicAnim {
                 y6Pos += 7.69f;
                 y3Pos += 7.69f;
 
-                g.fillRect(xWeightPos, yWeightPos, widthWeight,heightWeight);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
                 g.fillRect(xPos, yPos, width, height);
                 g.fillRect(x3Pos, y3Pos, width3, height3);
                 g.fillRect(x4Pos, y4Pos, width4, height4);
@@ -403,10 +423,9 @@ class OrganicAnim {
                 g.fillRect(x6Pos, y6Pos, width6, height6);
                 g.fillRect(x7Pos, y7Pos, width7, height7);
 
-
-                x2Pos = 802.3f;
-                y2Pos = 307.2f;
-                width2 = 312.05f;
+                x2Pos = 762.3f;
+                y2Pos = 310.2f;
+                width2 = 402.05f;
                 height2 = 2.4f;
 
             } else if (counter >= 256 && counter < 263) {
@@ -414,12 +433,12 @@ class OrganicAnim {
                 y3Pos += 7.69f;
                 height2 += 11.2f;
 
-                g.fillRect(xWeightPos, yWeightPos, widthWeight,heightWeight);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
                 g.fillRect(xPos, yPos, width, height);
                 g.fillRect(x2Pos, y2Pos, width2, height2);
+                g.fillRect(x3Pos, y3Pos, width3, height3);
                 g.fillRect(x6Pos, y6Pos, width6, height6);
                 g.fillRect(x7Pos, y7Pos, width7, height7);
-
 
 
             } else if (counter >= 263 && counter < 282) {
@@ -433,7 +452,7 @@ class OrganicAnim {
                 width4 = 298.4f;
                 height4 = 298.4f;
 
-            } else if (counter >= 282 && counter < 297) {
+            } else if (counter >= 282 && counter < 283) {
 
                 x4Pos -= 12.86;
                 y4Pos -= 12.86;
@@ -444,6 +463,16 @@ class OrganicAnim {
 
                 updatePieChart();
 
+            } else if (counter >= 283 && counter < 297) {
+
+                x4Pos -= 12.86;
+                y4Pos -= 12.86;
+                width4 += 25.92;
+                height4 += 25.92;
+
+                g.fillOval(x4Pos, y4Pos, width4, height4);
+
+                updatePie = false;
             } else if (counter >= 297 && counter < 312) {
 
                 g.fillOval(x4Pos, y4Pos, width4, height4);
@@ -474,6 +503,18 @@ class OrganicAnim {
 
     void setRunning(boolean bool) {
         running = bool;
+    }
+
+    boolean isUpdateTrashRace() {
+        return updateTrashRace;
+    }
+
+    boolean isUpdatePie() {
+        return updatePie;
+    }
+
+    public boolean isUpdateWeight() {
+        return updateWeight;
     }
 
 

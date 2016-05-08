@@ -3,7 +3,6 @@ package example;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
-
 /**************************************
  * Class that handles the animation pulse for
  * flammable garbage collected.
@@ -15,7 +14,7 @@ class FlammableAnim {
     private static final Color flamred = new Color(198,55,32,255);
 
     //Active or not
-    private boolean running;
+    private boolean running, updateTrashRace, updatePie, updateWeight;
 
     //FPS counter
     private int counter;
@@ -48,14 +47,17 @@ class FlammableAnim {
 
     public void updateTrashRace() {
         System.out.println("*MODEM SOUND* updated the race parameters");
+        updateTrashRace = true;
     }
 
     public void updateWeight() {
         System.out.println("*MODEM SOUND* updated the weight parameters");
+        updateWeight = true;
     }
 
     public void updatePieChart() {
         System.out.println("*MODEM SOUND* updated the pie chart");
+        updatePie = true;
     }
 
 
@@ -232,7 +234,7 @@ class FlammableAnim {
                 width3 = 7f;
                 height3 = 69.3f;
 
-            } else if (counter >= 182 && counter < 193) {
+            } else if (counter >= 182 && counter < 183) {
 
                 yPos -= 28.78f;
                 y3Pos -= 8.27f;
@@ -249,7 +251,26 @@ class FlammableAnim {
 
                 updateWeight();
 
-            } else if (counter >= 193 && counter < 200) {
+            }
+            else if (counter >= 183 && counter < 193) {
+
+                yPos -= 28.78f;
+                y3Pos -= 8.27f;
+                x5Pos -= 13.62;
+                y6Pos -= 14.17f;
+                widthRace += 14.85f;
+
+                g.fillRect(xPos, yPos, width, height);
+                g.fillRect(x3Pos, y3Pos, width3, height3);
+                g.fillRect(x5Pos, y5Pos, width5, height5);
+                g.fillRect(x6Pos, y6Pos, width6, height6);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+                g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
+
+                updateWeight = false;
+
+            }
+            else if (counter >= 193 && counter < 200) {
 
                 yPos -= 18.78f;
                 y3Pos -= 8.27f;
@@ -304,7 +325,7 @@ class FlammableAnim {
                 width = 7;
                 height = 115;
 
-            } else if (counter >= 214 && counter < 240) { //HERE IT GOES UP THE WEIGHTS
+            } else if (counter >= 214 && counter < 215) { //HERE IT GOES UP THE WEIGHTS
 
                 x2Pos += 20.925f;
                 x4Pos -= 18.6f;
@@ -317,6 +338,19 @@ class FlammableAnim {
                 g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
 
                 updateTrashRace();
+
+            } else if (counter >= 215 && counter < 240) {
+
+                x2Pos += 20.925f;
+                x4Pos -= 18.6f;
+                x7Pos += 8.44f;
+
+                g.fillRect(x2Pos, y2Pos, width2, height2);
+                g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+                g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
+                updateTrashRace = false;
 
             } else if (counter >= 240 && counter < 252) {
 
@@ -333,9 +367,9 @@ class FlammableAnim {
                 g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
                 g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
 
-                x3Pos = 802.3f;
-                y3Pos = 307.2f;
-                width3 = 312.05f;
+                x3Pos = 762.3f;
+                y3Pos = 310.2f;
+                width3 = 402.05f;
                 height3 = 2.4f;
 
             } else if (counter >= 252 && counter < 266) {
@@ -361,7 +395,7 @@ class FlammableAnim {
                 width4 = 298.4f;
                 height4 = 298.4f;
 
-            } else if (counter >= 280 && counter < 297) {
+            } else if (counter >= 280 && counter < 281) {
 
                 x4Pos -= 12.86;
                 y4Pos -= 12.86;
@@ -371,6 +405,16 @@ class FlammableAnim {
                 g.fillOval(x4Pos, y4Pos, width4, height4);
 
                 updatePieChart();
+
+            } else if (counter >= 281 && counter < 297) {
+
+                x4Pos -= 12.86;
+                y4Pos -= 12.86;
+                width4 += 25.92;
+                height4 += 25.92;
+
+                g.fillOval(x4Pos, y4Pos, width4, height4);
+                updatePie = false;
 
             } else if (counter >= 297 && counter < 312) {
 
@@ -486,6 +530,17 @@ class FlammableAnim {
         running = bool;
     }
 
+    boolean isUpdateTrashRace() {
+        return updateTrashRace;
+    }
+
+    boolean isUpdatePie() {
+        return updatePie;
+    }
+
+    public boolean isUpdateWeight() {
+        return updateWeight;
+    }
 
 
     /***************************************
