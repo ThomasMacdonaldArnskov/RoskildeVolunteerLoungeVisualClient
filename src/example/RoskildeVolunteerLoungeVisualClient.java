@@ -19,6 +19,7 @@ import org.newdawn.slick.*;
 public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
 
     private Image wires, bg, toplayer, colourScheme;
+    static AudioPlayer audioPlayer = new AudioPlayer();
 
     private static final int LISTSIZE = 10;
 
@@ -362,7 +363,7 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
         //LAYER 1 : WIRES
         g.drawImage(wires, 0, 0);
 
-        //LAYER 2 : ANIMATION
+        //LAYER 2 : ANIMATIONC:\Users\Anders\AppData\Local\GitHub\PortableGit_d76a6a98c9315931ec4927243517bc09e9b731a0\cmd
         displayOrder(g);
 
 
@@ -377,9 +378,9 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
         //LAYER 4 : VISUAL COMPONENTS SUCH AS THE GRAPHS
         displayRace(g);
         displayPie(g);
-        font.drawString(1587,338,""+prevCardBoardW+" KG.", Color.white);
-        font.drawString(1587,441,""+prevOrganW+" KG.", Color.white);
-        font.drawString(1587,542,""+prevFlamW+" KG.", Color.white);
+        font.drawString(1587,338,""+prevCardBoardW+" G.", Color.white);
+        font.drawString(1587,441,""+prevOrganW+" G.", Color.white);
+        font.drawString(1587,542,""+prevFlamW+" G.", Color.white);
 
         //LAYER 5 : GRAPH OVERLAYS
         g.drawImage(toplayer, 0, 0);
@@ -505,6 +506,7 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
         } else if (splitMessage[0].equals("Cardboard")) {
             startCardboard();
         } else if (splitMessage[0].equals("Organic")) {
+            audioPlayer.playSoundBio(1);
             startOrganic();
         } else {
             System.out.println("Someone is trying to hack our wonderful system!");
