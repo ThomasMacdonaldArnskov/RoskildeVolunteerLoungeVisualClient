@@ -136,13 +136,27 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
     }
 
     private void updateWeight() {
+
+        //GÅR JEG UD FRA AT VÆRDIERNE HEDDER? DER ER INGEN GRUND TIL AT DET ER PREVIOUS MERE, ET LEVN FRA RANDOM GENERATOR KODEN
+        prevCardBoardW = (float)databaseHandler.getCurrentWeight("Cardboard");
+        prevFlamW = (float)databaseHandler.getCurrentWeight("Flammable");
+        prevOrganW = (float)databaseHandler.getCurrentWeight("Organic");
+        /*
         prevCardBoardW = cardBoardW;
         prevFlamW = flamW;
         prevOrganW = organW;
+        */
     }
 
     private void updatePie() {
+
+        //GÅR JEG UD FRA AT VÆRDIERNE HEDDER? BEHØVER NOK IKKE HIVES FRA DATABASEN, DA DEN I ALLE TILFÆLDE BURDE VÆRE OPDATERET PÅ DET TIDSPUNKT HVOR "NOT-PIE" BLIVER KALDT
+        flamW = (float)databaseHandler.getTotalWeight("Flammable");
+        organW = (float)databaseHandler.getTotalWeight("Organic");
+        cardBoardW = (float)databaseHandler.getTotalWeight("Cardboard");
+
         combinedWeights = flamW + organW + cardBoardW;
+
         flamHeight = (flamW / combinedWeights) * middleHundredPercent;
         organicHeight = (organW / combinedWeights) * middleHundredPercent;
         cardBoardHeight = (cardBoardW / combinedWeights) * middleHundredPercent;
@@ -166,9 +180,16 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
     }
 
     private void updateRace() {
+
+        //GÅR JEG UD FRA VÆRDIERNE HEDDER? SKAL SELVFØLGELIG VÆRE NOGET ANDET NÅR VI HAR TO SYSTEMER, I DENNE ER KAFFEBAR SAT TIL ORGANISK I STEDET OG SHUFFLEBOARD TIL FLAMMABLE
+        shuffleBoardActivated = (float)databaseHandler.getCurrentWeight("Flammable");
+        coffeeBarActivated = (float)databaseHandler.getCurrentWeight("Organic");
+
         combinedActivations = shuffleBoardActivated + coffeeBarActivated;
+
         shuffleBoardHeight = (shuffleBoardActivated / combinedActivations) * oneHundredPercent;
         coffeeBarHeight = (coffeeBarActivated / combinedActivations) * oneHundredPercent;
+
         shuffleBoardOffset = oneHundredPercent - shuffleBoardHeight;
         coffeeBarOffset = oneHundredPercent - coffeeBarHeight;
     }
@@ -203,7 +224,7 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
         flamList.get(currentSelectionFlame).setRunning(true);
 
         // ONLY FOR TESTING
-        graphTester();
+        //graphTester();
     }
 
     private void startCardboard() {
@@ -221,7 +242,7 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
         cardList.get(currentSelectionCard).setRunning(true);
 
         // ONLY FOR TESTING
-        graphTester();
+        //graphTester();
     }
 
     private void startOrganic() {
@@ -239,7 +260,7 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
         organList.get(currentSelectionOrgan).setRunning(true);
 
         // ONLY FOR TESTING
-        graphTester();
+        //graphTester();
     }
 
 
@@ -334,7 +355,7 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
 
         //LAYER 0 : BACKGROUND
         /**
-         * Completely monocoloured - Just to account for pixel mistakes
+         * Completely mono coloured - Just to account for pixel mistakes
          */
         g.drawImage(colourScheme, 0, 0);
 
@@ -369,10 +390,6 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
 
 
 
-    }
-
-
-    public void update() {
     }
 
     private void loadFont() {
