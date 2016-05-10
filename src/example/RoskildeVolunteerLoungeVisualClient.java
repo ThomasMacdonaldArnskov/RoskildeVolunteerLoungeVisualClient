@@ -117,7 +117,7 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
         System.out.println("Started SerialListener");
 
         try {
-            databaseHandler = new DatabaseHandler("D:/users/anders/documents");
+            databaseHandler = new DatabaseHandler("C:/Users/Thomas Macdonald/Documents");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -139,9 +139,10 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
     private void updateWeight() {
 
         //GÅR JEG UD FRA AT VÆRDIERNE HEDDER? DER ER INGEN GRUND TIL AT DET ER PREVIOUS MERE, ET LEVN FRA RANDOM GENERATOR KODEN
-        prevCardBoardW = (float)databaseHandler.getCurrentWeight("Cardboard");
-        prevFlamW = (float)databaseHandler.getCurrentWeight("Flammable");
-        prevOrganW = (float)databaseHandler.getCurrentWeight("Organic");
+        prevCardBoardW = (float)((int)(databaseHandler.getTotalWeight("Cardboard")/10))/100;
+        prevFlamW = (float)((int)(databaseHandler.getTotalWeight("Flammable")/10))/100;
+        prevOrganW = (float)((int)(databaseHandler.getTotalWeight("Organic")/10))/100;
+
         /*
         prevCardBoardW = cardBoardW;
         prevFlamW = flamW;
@@ -353,7 +354,7 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
 
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException {
-
+        
         //LAYER 0 : BACKGROUND
         /**
          * Completely mono coloured - Just to account for pixel mistakes
@@ -376,11 +377,11 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
         //cardboardAnim.animation(g);
 
         //LAYER 4 : VISUAL COMPONENTS SUCH AS THE GRAPHS
-        displayRace(g);
+        //displayRace(g);
         displayPie(g);
-        font.drawString(1587,338,""+prevCardBoardW+" G.", Color.white);
-        font.drawString(1587,441,""+prevOrganW+" G.", Color.white);
-        font.drawString(1587,542,""+prevFlamW+" G.", Color.white);
+        font.drawString(1587,338,""+prevCardBoardW+" KG.", Color.white);
+        font.drawString(1587,441,""+prevOrganW+" KG.", Color.white);
+        font.drawString(1587,542,""+prevFlamW+" KG.", Color.white);
 
         //LAYER 5 : GRAPH OVERLAYS
         g.drawImage(toplayer, 0, 0);

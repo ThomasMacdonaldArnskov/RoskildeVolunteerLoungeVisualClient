@@ -1,7 +1,7 @@
 package example;
 
 public class AudioPlayer {
-	String audioFileLocation = "D:/Users/Anders/Downloads/sounds ready to import to java - version 1/";
+	String audioFileLocation = "C:/Users/Thomas Macdonald/Downloads/sound/";
 
 	
 	public void playSoundBio() {
