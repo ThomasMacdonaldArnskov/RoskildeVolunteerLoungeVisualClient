@@ -33,6 +33,16 @@ class CardboardAnim {
 
     private int alpha = 255;
 
+    private int alphaOverlay = 255;
+    private int alphaOverlayDeux = 255;
+    private int alphaOverlayR = 255;
+    private int alphaOverlayDrei = 255;
+
+    private float pX, pY, radius;
+    private float pX2, pY2, radius2;
+    private float pX3, pY3, radius3;
+    private float pXr, pYr, widthRP, heightRP;
+
 
     CardboardAnim() {
 
@@ -214,8 +224,7 @@ class CardboardAnim {
 
                 updateWeight();
 
-            }
-            else if (counter >= 152 && counter < 155) {
+            } else if (counter >= 152 && counter < 155) {
 
                 yPos -= 32.08f;
                 height += 7.95f;
@@ -232,8 +241,7 @@ class CardboardAnim {
                 height3 = 41.7f;
                 updateWeight = false;
 
-            }
-            else if (counter >= 155 && counter < 160) {
+            } else if (counter >= 155 && counter < 160) {
 
                 yPos -= 32.08f;
                 height += 7.95f;
@@ -371,8 +379,7 @@ class CardboardAnim {
 
                 updateTrashRace();
 
-            }
-            else if (counter >= 195 && counter < 197) {
+            } else if (counter >= 195 && counter < 197) {
 
                 xWeightPos += 9.01f;
                 x2Pos -= 8.85f;
@@ -396,8 +403,7 @@ class CardboardAnim {
                 widthRace = 7;
                 heightRace = 21.4f;
                 updateTrashRace = false;
-            }
-            else if (counter >= 197 && counter < 202) {
+            } else if (counter >= 197 && counter < 202) {
 
                 xWeightPos += 9.01f;
                 width2 -= 7.75f;
@@ -501,7 +507,7 @@ class CardboardAnim {
             } else if (counter >= 245 && counter < 249) {
 
                 width -= 15.44f;
-                width2 -=15.44f;
+                width2 -= 15.44f;
                 x2Pos += 15.44f;
                 height4 += 6.71f;
                 heightRace += 6.71f;
@@ -509,9 +515,11 @@ class CardboardAnim {
                 g.fillRect(xPos, yPos, width, height);
                 g.fillRect(x2Pos, y2Pos, width2, height2);
                 g.fillRect(x5Pos, y5Pos, width5, height5);
+
                 g.fillRect(x6Pos, y6Pos, width6, height6);
                 g.fillRect(x7Pos, y7Pos, width7, height7);
                 g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+
                 g.fillRect(x4Pos, y4Pos, width4, height4);
                 g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
 
@@ -527,15 +535,23 @@ class CardboardAnim {
                 height4 += 6.71f;
                 heightRace += 6.71f;
 
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+                g.fillRect(x6Pos, y6Pos, width6, height6);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+
                 g.fillRect(x3Pos, y3Pos, width3, height3);
                 g.fillRect(x4Pos, y4Pos, width4, height4);
                 g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
 
             } else if (counter >= 252 && counter < 277) {
 
-                y4Pos +=3.63f;
+                y4Pos += 3.63f;
                 yRacePos += 3.63f;
                 height3 += 11.2f;
+
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+                g.fillRect(x6Pos, y6Pos, width6, height6);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
 
                 g.fillRect(x3Pos, y3Pos, width3, height3);
                 g.fillRect(x4Pos, y4Pos, width4, height4);
@@ -553,31 +569,47 @@ class CardboardAnim {
                 width += 25.92;
                 height += 25.92;
 
-                g.fillOval(xPos, yPos, width, height);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+                g.fillRect(x6Pos, y6Pos, width6, height6);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+
+                g.fillRect(xPos, yPos, width, height);
 
                 updatePieChart();
 
-            }else if (counter >= 278 && counter < 292) {
+            } else if (counter >= 278 && counter < 292) {
 
                 xPos -= 12.87;
                 yPos -= 12.87;
                 width += 25.92;
                 height += 25.92;
 
-                g.fillOval(xPos, yPos, width, height);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+                g.fillRect(x6Pos, y6Pos, width6, height6);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+
+                g.fillRect(xPos, yPos, width, height);
 
                 updatePie = false;
 
-            }
-            else if (counter >= 292 && counter < 305) {
+            } else if (counter >= 292 && counter < 305) {
 
-                g.fillOval(xPos, yPos, width, height);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+                g.fillRect(x6Pos, y6Pos, width6, height6);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+
+                g.fillRect(xPos, yPos, width, height);
 
             } else if (counter >= 305 && counter < 315) {
 
                 Color alphacontrol = new Color(73, 73, 163, alpha);
                 g.setColor(alphacontrol);
-                g.fillOval(xPos, yPos, width, height);
+
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+                g.fillRect(x6Pos, y6Pos, width6, height6);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+
+                g.fillRect(xPos, yPos, width, height);
                 alpha -= 23;
 
 
@@ -585,6 +617,58 @@ class CardboardAnim {
 
                 reset();
                 running = false;
+            }
+        }
+    }
+
+    /**
+     * When there is time at some point
+     *
+     * @param g Slick Graphics element
+     */
+    void animationOverlay(Graphics g) {
+
+        if (running) {
+            g.setLineWidth(10f);
+
+            if (counter >= 24 && counter < 44) {
+                elipsePulse(g);
+            } else if (counter >= 44 && counter < 64) {
+                elipseReset(1138.1f, 892.5f, 110.6f);
+            } else if (counter >= 64 && counter < 84) {
+                elipsePulse(g);
+            } else if (counter >= 84 && counter < 104) {
+                elipseReset(1165.7f, 769.65f, 54.2f);
+            } else if (counter >= 106 && counter < 116) {
+                elipsePulse(g);
+            } else if (counter >= 116 && counter < 126) {
+                elipsePulseDeux(g);
+                elipseReset(1370.45f, 307.85f, 88.6f);     //HER ER JEG NÅET TIL
+            } else if (counter >= 150 && counter < 160) {
+                rectPulse(g);
+            } else if (counter >= 160 && counter < 161) {
+                rectReset(134.35f, 630.05f, 488.9f, 40.55f);
+                elipseResetDeux(1339.5f, 717.5f, 52.1f);
+            } else if (counter >= 161 && counter < 171) {
+                elipsePulseDeux(g);
+                rectReset(134.35f, 630.05f, 488.9f, 40.55f);
+            } else if (counter >= 171 && counter < 175) {
+                elipsePulse(g);
+                elipseResetDeux(1499.45f, 333.3f, 38.1f);
+            } else if (counter >= 175 && counter < 181) {
+                elipsePulse(g);
+                elipsePulseDrei(g);
+                elipsePulseDeux(g);
+            } else if (counter >= 181 && counter < 185) {
+                elipsePulse(g);
+                elipsePulseDrei(g);
+                elipsePulseDeux(g);
+            } else if (counter >= 193 && counter < 201) {
+                rectPulse(g);
+            } else if (counter >= 201 && counter < 202) {
+                rectReset(1570.35f, 308.2f, 216.35f, 89.4f);
+            } else if (counter >= 202 && counter < 212) {
+                rectPulse(g);
             }
         }
     }
@@ -621,6 +705,13 @@ class CardboardAnim {
     private void reset() {
 
         counter = 0;
+
+        alpha = 255;
+
+        alphaOverlay = 255;
+        alphaOverlayDeux = 255;
+        alphaOverlayR = 255;
+        alphaOverlayDrei = 255;
 
         xPos = 957.4f;
         yPos = 1080.65f;
@@ -667,6 +758,98 @@ class CardboardAnim {
         widthRace = 16.85f;
         heightRace = 45.9f;
 
+        pX = 1138.1f;
+        pY = 892.5f;
+        radius = 110.6f;
+
+        pX2 = 1442.45f;
+        pY2 = 772.45f;
+        radius2 = 52.1f;
+
+        pX3 = 527.25f;
+        pY3 = 717.5f;
+        radius3 = 52.1f;
+
+        pXr = 1297.5f;
+        pYr = 630.05f;
+        widthRP = 488.9f;
+        heightRP = 40.55f;
+
+    }
+
+    private void elipsePulse(Graphics g) {
+        Color overLayColor = new Color(73, 73, 163, alphaOverlay);
+
+        pX -= 1.75f;
+        pY -= 1.75f;
+        radius += 3.5f;
+        g.setLineWidth(10f);
+        g.setColor(overLayColor);
+        g.drawOval(pX, pY, radius, radius);
+        alphaOverlay -= 25.37f;
+    }
+
+    private void elipsePulseDeux(Graphics g) {
+        Color overLayColor2 = new Color(73, 73, 163, alphaOverlayDeux);
+
+        pX2 -= 1.75f;
+        pY2 -= 1.75f;
+        radius2 += 3.5f;
+        g.setLineWidth(10f);
+        g.setColor(overLayColor2);
+        g.drawOval(pX2, pY2, radius2, radius2);
+        alphaOverlayDeux -= 25.37f;
+    }
+
+    private void elipsePulseDrei(Graphics g) {
+        Color overLayColor2 = new Color(73, 73, 163, alphaOverlayDrei);
+
+        pX3 -= 1.75f;
+        pY3 -= 1.75f;
+        radius3 += 3.5f;
+        g.setLineWidth(10f);
+        g.setColor(overLayColor2);
+        g.drawOval(pX3, pY3, radius3, radius3);
+        alphaOverlayDrei -= 25.37f;
+    }
+
+
+    private void elipseReset(float x, float y, float radius) {
+        alphaOverlay = 255;
+
+        this.pX = x;
+        this.pY = y;
+        this.radius = radius;
+    }
+
+    private void elipseResetDeux(float x, float y, float radius) {
+        alphaOverlayDeux = 255;
+
+        this.pX2 = x;
+        this.pY2 = y;
+        this.radius2 = radius;
+    }
+
+    private void rectPulse(Graphics g) {
+        Color overLayColorR = new Color(73, 73, 163, alphaOverlayR);
+
+        pXr -= 2;
+        pYr -= 2;
+        widthRP += 4;
+        heightRP += 4;
+        g.setColor(overLayColorR);
+        g.setLineWidth(5f);
+        g.drawRect(pXr, pYr, widthRP, heightRP);
+        alphaOverlayR -= 25.37f;
+    }
+
+    private void rectReset(float x, float y, float width, float height) {
+        alphaOverlayR = 255;
+
+        this.pXr = x;
+        this.pYr = y;
+        this.widthRP = width;
+        this.heightRP = height;
     }
 }
 

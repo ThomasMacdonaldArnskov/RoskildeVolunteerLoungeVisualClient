@@ -31,6 +31,13 @@ class OrganicAnim {
     private float xWeightPos, yWeightPos, widthWeight, heightWeight;
 
     private int alpha = 255;
+    private int alphaOverlay = 255;
+    private int alphaOverlayDeux = 255;
+    private int alphaOverlayR = 255;
+
+    private float pX, pY, radius;
+    private float pX2, pY2, radius2;
+    private float pXr, pYr, widthRP, heightRP;
 
 
     OrganicAnim() {
@@ -446,6 +453,11 @@ class OrganicAnim {
                 height2 += 11.2f;
 
                 g.fillRect(x2Pos, y2Pos, width2, height2);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+                g.fillRect(xPos, yPos, width, height);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+
+
 
                 x4Pos = 811.15f;
                 y4Pos = 309f;
@@ -459,7 +471,12 @@ class OrganicAnim {
                 width4 += 25.92;
                 height4 += 25.92;
 
-                g.fillOval(x4Pos, y4Pos, width4, height4);
+                g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+                g.fillRect(xPos, yPos, width, height);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+
+
 
                 updatePieChart();
 
@@ -470,18 +487,33 @@ class OrganicAnim {
                 width4 += 25.92;
                 height4 += 25.92;
 
-                g.fillOval(x4Pos, y4Pos, width4, height4);
+                g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+                g.fillRect(xPos, yPos, width, height);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+
+
 
                 updatePie = false;
             } else if (counter >= 297 && counter < 312) {
 
-                g.fillOval(x4Pos, y4Pos, width4, height4);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+                g.fillRect(xPos, yPos, width, height);
+                g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+
 
             } else if (counter >= 312 && counter < 323) {
 
                 Color alphacontrol = new Color(40, 118, 40, alpha);
                 g.setColor(alphacontrol);
-                g.fillOval(x4Pos, y4Pos, width4, height4);
+                g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+                g.fillRect(xPos, yPos, width, height);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+
+
+
                 alpha -= 23;
 
             } else {
@@ -492,6 +524,49 @@ class OrganicAnim {
         }
     }
 
+    /**
+     * When there is time at some point
+     *
+     * @param g Slick Graphics element
+     */
+    void animationOverlay(Graphics g) {
+
+        if (running) {
+            g.setLineWidth(10f);
+
+            if (counter >= 24 && counter < 44) {
+                elipsePulse(g);
+            } else if (counter >= 44 && counter < 64) {
+                elipseReset(670.65f, 892.5f, 110.6f);
+            } else if (counter >= 64 && counter < 84) {
+                elipsePulse(g);
+            } else if (counter >= 84 && counter < 104) {
+                elipseReset(697.35f, 769.65f, 54.2f);
+            } else if (counter >= 106 && counter < 116) {
+                elipsePulse(g);
+            } else if (counter >= 116 && counter < 126) {
+                elipsePulseDeux(g);
+                elipseReset(1370.45f, 410.15f, 88.6f);
+            } else if (counter >= 150 && counter < 160) {
+                rectPulse(g);
+            } else if (counter >= 160 && counter < 161) {
+                rectReset(1297.75f, 630.05f, 488.9f, 40.55f);
+                elipseResetDeux(1498.45f, 436.2f, 38.1f);
+            } else if (counter >= 179 && counter < 189) {
+                rectPulse(g);
+            } else if (counter >= 194 && counter < 197) {
+                elipsePulse(g);
+                rectReset(1570.35f, 411.5f, 224.4f, 92.75f);
+            } else if (counter >= 197 && counter < 204) {
+                elipsePulse(g);
+                elipsePulseDeux(g);
+            } else if (counter >= 204 && counter < 208) {
+                elipsePulseDeux(g);
+            } else if (counter >= 249 && counter < 259) {
+                rectPulse(g);
+            }
+        }
+    }
 
     /***************************************
      * Getter and setter methods
@@ -524,6 +599,11 @@ class OrganicAnim {
     private void reset() {
 
         counter = 0;
+        alpha = 255;
+
+        alphaOverlay = 255;
+        alphaOverlayDeux = 255;
+        alphaOverlayR = 255;
 
         xPos = 957.4f;
         yPos = 1080.65f;
@@ -564,6 +644,83 @@ class OrganicAnim {
         yWeightPos = 628.1f;
         widthWeight = 28.2f;
         heightWeight = 45.7f;
+
+
+
+        pX = 670.65f;
+        pY = 892.5f;
+        radius = 110.6f;
+
+        pX2 = 424.15f;
+        pY2 = 772.45f;
+        radius2 = 52.1f;
+
+        pXr = 134.1f;
+        pYr = 630.05f;
+        widthRP = 488.9f;
+        heightRP = 40.55f;
+    }
+
+    private void elipsePulse(Graphics g) {
+        Color overLayColor = new Color(40, 118, 40, alphaOverlay);
+
+        pX -= 1.75f;
+        pY -= 1.75f;
+        radius += 3.5f;
+        g.setLineWidth(10f);
+        g.setColor(overLayColor);
+        g.drawOval(pX, pY, radius, radius);
+        alphaOverlay -= 25.37f;
+    }
+
+    private void elipsePulseDeux(Graphics g) {
+        Color overLayColor2 = new Color(40, 118, 40, alphaOverlayDeux);
+
+        pX2 -= 1.75f;
+        pY2 -= 1.75f;
+        radius2 += 3.5f;
+        g.setLineWidth(10f);
+        g.setColor(overLayColor2);
+        g.drawOval(pX2, pY2, radius2, radius2);
+        alphaOverlayDeux -= 25.37f;
+    }
+
+    private void elipseReset(float x, float y, float radius) {
+        alphaOverlay = 255;
+
+        this.pX = x;
+        this.pY = y;
+        this.radius = radius;
+    }
+
+    private void elipseResetDeux(float x, float y, float radius) {
+        alphaOverlayDeux = 255;
+
+        this.pX2 = x;
+        this.pY2 = y;
+        this.radius2 = radius;
+    }
+
+    private void rectPulse(Graphics g) {
+        Color overLayColorR = new Color(40, 118, 40, alphaOverlayR);
+
+        pXr -= 2;
+        pYr -= 2;
+        widthRP += 4;
+        heightRP += 4;
+        g.setColor(overLayColorR);
+        g.setLineWidth(5f);
+        g.drawRect(pXr, pYr, widthRP, heightRP);
+        alphaOverlayR -= 25.37f;
+    }
+
+    private void rectReset(float x, float y, float width, float height) {
+        alphaOverlayR = 255;
+
+        this.pXr = x;
+        this.pYr = y;
+        this.widthRP = width;
+        this.heightRP = height;
     }
 
 }

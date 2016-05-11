@@ -139,9 +139,9 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
     private void updateWeight() {
 
         //GÅR JEG UD FRA AT VÆRDIERNE HEDDER? DER ER INGEN GRUND TIL AT DET ER PREVIOUS MERE, ET LEVN FRA RANDOM GENERATOR KODEN
-        prevCardBoardW = (float)((int)(databaseHandler.getTotalWeight("Cardboard")/10))/100;
-        prevFlamW = (float)((int)(databaseHandler.getTotalWeight("Flammable")/10))/100;
-        prevOrganW = (float)((int)(databaseHandler.getTotalWeight("Organic")/10))/100;
+        prevCardBoardW = (float) ((int) (databaseHandler.getTotalWeight("Cardboard") / 10)) / 100;
+        prevFlamW = (float) ((int) (databaseHandler.getTotalWeight("Flammable") / 10)) / 100;
+        prevOrganW = (float) ((int) (databaseHandler.getTotalWeight("Organic") / 10)) / 100;
 
         /*
         prevCardBoardW = cardBoardW;
@@ -153,9 +153,9 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
     private void updatePie() {
 
         //GÅR JEG UD FRA AT VÆRDIERNE HEDDER? BEHØVER NOK IKKE HIVES FRA DATABASEN, DA DEN I ALLE TILFÆLDE BURDE VÆRE OPDATERET PÅ DET TIDSPUNKT HVOR "NOT-PIE" BLIVER KALDT
-        flamW = (float)databaseHandler.getTotalWeight("Flammable");
-        organW = (float)databaseHandler.getTotalWeight("Organic");
-        cardBoardW = (float)databaseHandler.getTotalWeight("Cardboard");
+        flamW = (float) databaseHandler.getTotalWeight("Flammable");
+        organW = (float) databaseHandler.getTotalWeight("Organic");
+        cardBoardW = (float) databaseHandler.getTotalWeight("Cardboard");
 
         combinedWeights = flamW + organW + cardBoardW;
 
@@ -184,8 +184,8 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
     private void updateRace() {
 
         //GÅR JEG UD FRA VÆRDIERNE HEDDER? SKAL SELVFØLGELIG VÆRE NOGET ANDET NÅR VI HAR TO SYSTEMER, I DENNE ER KAFFEBAR SAT TIL ORGANISK I STEDET OG SHUFFLEBOARD TIL FLAMMABLE
-        shuffleBoardActivated = (float)databaseHandler.getCurrentWeight("Flammable");
-        coffeeBarActivated = (float)databaseHandler.getCurrentWeight("Organic");
+        shuffleBoardActivated = (float) databaseHandler.getCurrentWeight("Flammable");
+        coffeeBarActivated = (float) databaseHandler.getCurrentWeight("Organic");
 
         combinedActivations = shuffleBoardActivated + coffeeBarActivated;
 
@@ -212,13 +212,6 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
      ***********************************/
 
     private void startFlammable() {
-        // keyboard control
-        /*if (gc.getInput().isKeyPressed(Input.KEY_1)) {
-            prevLastUsed = lastUsed;
-            lastUsed = 0;
-            selector(0);
-            flamList.get(currentSelectionFlame).setRunning(true);
-        }*/
 
         prevLastUsed = lastUsed;
         lastUsed = 0;
@@ -230,13 +223,6 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
     }
 
     private void startCardboard() {
-        // keyboard control
-        /*if (gc.getInput().isKeyPressed(Input.KEY_1)) {
-            prevLastUsed = lastUsed;
-            lastUsed = 0;
-            selector(0);
-            flamList.get(currentSelectionFlame).setRunning(true);
-        }*/
 
         prevLastUsed = lastUsed;
         lastUsed = 1;
@@ -248,13 +234,6 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
     }
 
     private void startOrganic() {
-        // keyboard control
-        /*if (gc.getInput().isKeyPressed(Input.KEY_1)) {
-            prevLastUsed = lastUsed;
-            lastUsed = 0;
-            selector(0);
-            flamList.get(currentSelectionFlame).setRunning(true);
-        }*/
 
         prevLastUsed = lastUsed;
         lastUsed = 2;
@@ -350,11 +329,33 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
                 updateWeight();
             }
         }
+
+        //KEYBOARD CONTROL FOR TESTING
+        /*
+        if (gc.getInput().isKeyPressed(Input.KEY_1)) {
+            prevLastUsed = lastUsed;
+            lastUsed = 0;
+            selector(2);
+            organList.get(currentSelectionOrgan).setRunning(true);
+        }
+        if (gc.getInput().isKeyPressed(Input.KEY_2)) {
+            prevLastUsed = lastUsed;
+            lastUsed = 0;
+            selector(0);
+            flamList.get(currentSelectionFlame).setRunning(true);
+        }
+
+        if (gc.getInput().isKeyPressed(Input.KEY_3)) {
+            prevLastUsed = lastUsed;
+            lastUsed = 0;
+            selector(1);
+            cardList.get(currentSelectionCard).setRunning(true);
+        }*/
     }
 
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException {
-        
+
         //LAYER 0 : BACKGROUND
         /**
          * Completely mono coloured - Just to account for pixel mistakes
@@ -379,17 +380,19 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
         //LAYER 4 : VISUAL COMPONENTS SUCH AS THE GRAPHS
         //displayRace(g);
         displayPie(g);
-        font.drawString(1587,338,""+prevCardBoardW+" KG.", Color.white);
-        font.drawString(1587,441,""+prevOrganW+" KG.", Color.white);
-        font.drawString(1587,542,""+prevFlamW+" KG.", Color.white);
+        font.drawString(1587, 338, "" + prevCardBoardW + " KG.", Color.white);
+        font.drawString(1587, 441, "" + prevOrganW + " KG.", Color.white);
+        font.drawString(1587, 542, "" + prevFlamW + " KG.", Color.white);
 
         //LAYER 5 : GRAPH OVERLAYS
         g.drawImage(toplayer, 0, 0);
 
         //LAYER 6 : OVERLAY ANIMATIONS (NODE POPS) WHEN THEY ARE DONE AT SOME POINT
-        //flamAnim.animationOverlay(g);
-        //flamAnim2.animationOverlay(g);
-
+        for (int i = 0; i < LISTSIZE; i++) {
+            flamList.get(i).animationOverlay(g);
+            organList.get(i).animationOverlay(g);
+            cardList.get(i).animationOverlay(g);
+        }
 
 
     }
@@ -397,7 +400,7 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
     private void loadFont() {
 
         try {
-            InputStream inputStream	= ResourceLoader.getResourceAsStream("assets/dejavu.ttf");
+            InputStream inputStream = ResourceLoader.getResourceAsStream("assets/dejavu.ttf");
 
             Font awtFont = Font.createFont(Font.TRUETYPE_FONT, inputStream);
             awtFont = awtFont.deriveFont(24f); // set font size
@@ -484,7 +487,7 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
         try {
             AppGameContainer appgc;
             appgc = new AppGameContainer(new RoskildeVolunteerLoungeVisualClient("Simple Slick Game"));
-            appgc.setDisplayMode(1920, 1080, true);
+            appgc.setDisplayMode(1920, 1080, false);
             appgc.setShowFPS(false);
             appgc.setTargetFrameRate(24);
             appgc.start();

@@ -11,7 +11,7 @@ import org.newdawn.slick.Graphics;
 
 class FlammableAnim {
 
-    private static final Color flamred = new Color(198,55,32,255);
+    private static final Color flamred = new Color(198, 55, 32, 255);
 
     //Active or not
     private boolean running, updateTrashRace, updatePie, updateWeight;
@@ -34,8 +34,14 @@ class FlammableAnim {
 
     //Overlay elements
     private float pX, pY, radius;
+    private float pX2, pY2, radius2;
+    private float pXr, pYr, widthRP, heightRP;
+
 
     private int alpha = 255;
+    private int alphaOverlay = 255;
+    private int alphaOverlayDeux = 255;
+    private int alphaOverlayR = 255;
 
 
     FlammableAnim() {
@@ -64,6 +70,7 @@ class FlammableAnim {
     /**************************************
      * Hope You Like Pasta!
      * Animation Control for the visual impulse for the flammable garbage
+     *
      * @param g Slick Graphics Element
      **************************************/
 
@@ -251,8 +258,7 @@ class FlammableAnim {
 
                 updateWeight();
 
-            }
-            else if (counter >= 183 && counter < 193) {
+            } else if (counter >= 183 && counter < 193) {
 
                 yPos -= 28.78f;
                 y3Pos -= 8.27f;
@@ -269,8 +275,7 @@ class FlammableAnim {
 
                 updateWeight = false;
 
-            }
-            else if (counter >= 193 && counter < 200) {
+            } else if (counter >= 193 && counter < 200) {
 
                 yPos -= 18.78f;
                 y3Pos -= 8.27f;
@@ -389,10 +394,13 @@ class FlammableAnim {
                 height3 += 11.2f;
 
                 g.fillRect(x3Pos, y3Pos, width3, height3);
+                g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
 
-                x4Pos = 811.15f;
-                y4Pos = 309f;
-                width4 = 298.4f;
+                x4Pos = 762.3f;
+                y4Pos = 310.2f;
+                width4 = 402.05f;
                 height4 = 298.4f;
 
             } else if (counter >= 280 && counter < 281) {
@@ -402,7 +410,11 @@ class FlammableAnim {
                 width4 += 25.92;
                 height4 += 25.92;
 
-                g.fillOval(x4Pos, y4Pos, width4, height4);
+                g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+
 
                 updatePieChart();
 
@@ -413,18 +425,32 @@ class FlammableAnim {
                 width4 += 25.92;
                 height4 += 25.92;
 
-                g.fillOval(x4Pos, y4Pos, width4, height4);
+                g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+
+
                 updatePie = false;
 
             } else if (counter >= 297 && counter < 312) {
 
-                g.fillOval(x4Pos, y4Pos, width4, height4);
+                g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+
 
             } else if (counter >= 312 && counter < 323) {
 
-                Color alphacontrol = new Color(198,55,32, alpha);
+                Color alphacontrol = new Color(198, 55, 32, alpha);
                 g.setColor(alphacontrol);
-                g.fillOval(x4Pos, y4Pos, width4, height4);
+                g.fillRect(x4Pos, y4Pos, width4, height4);
+                g.fillRect(xRacePos, yRacePos, widthRace, heightRace);
+                g.fillRect(x7Pos, y7Pos, width7, height7);
+                g.fillRect(xWeightPos, yWeightPos, widthWeight, heightWeight);
+
+
                 alpha -= 23;
 
             } else {
@@ -437,89 +463,61 @@ class FlammableAnim {
 
     /**
      * When there is time at some point
+     *
      * @param g Slick Graphics element
      */
     void animationOverlay(Graphics g) {
 
         if (running) {
             g.setLineWidth(10f);
-            if (counter >= 24 && counter < 37) {
 
-                pX -= 1.75f;
-                pY -= 1.75f;
-                radius += 3.5f;
-
-                g.drawOval(pX,pY,radius,radius);
-            } else if (counter >= 37 && counter < 40) {
-
-                pX += 2.45f;
-                pY += 2.45f;
-                radius -= 4.87f;
-
-                g.drawOval(pX,pY,radius,radius);
-            } else if (counter >= 40 && counter < 43) {
-
-                pX -= 2.45f;
-                pY -= 2.45f;
-                radius += 4.87f;
-
-                g.drawOval(pX,pY,radius,radius);
+            if (counter >= 24 && counter < 44) {
+                elipsePulse(g);
+            } else if (counter >= 44 && counter < 64) {
+                elipseReset(903.85f, 892.85f, 110.6f);
+            } else if (counter >= 64 && counter < 84) {
+                elipsePulse(g);
+            } else if (counter >= 84 && counter < 104) {
+                elipseReset(524.95f, 919.35f, 38);
+            } else if (counter >= 126 && counter < 132) {
+                elipsePulseDeux(g);
+            } else if (counter >= 132 && counter < 140) {
+                elipsePulse(g);
+                elipseResetDeux(1611.15f, 907.15f, 62.15f);
+            } else if (counter >= 140 && counter < 143) {
+                elipsePulse(g);
+                elipsePulseDeux(g);
+            } else if (counter >= 143 && counter < 150) {
+                elipsePulseDeux(g);
+                elipseReset(246.15f, 907.15f, 62.15f);
+            } else if (counter >= 153 && counter < 163) {
+                elipsePulse(g);
+            } else if (counter >= 163 && counter < 165) {
+                elipseReset(1370.85f, 512.85f, 88.6f);
+                elipseResetDeux(1498.45f, 536.2f, 38.1f);
+            } else if (counter >= 183 && counter < 193) {
+                rectPulse(g);
+            } else if (counter >= 205 && counter < 210) {
+                elipsePulse(g);
+                rectReset(134.1f, 630.05f, 488.9f, 40.55f);
+            } else if (counter >= 210 && counter < 213) {
+                elipsePulse(g);
+                elipsePulseDeux(g);
+            } else if (counter >= 213 && counter < 220) {
+                elipsePulse(g);
+                elipsePulseDeux(g);
+                rectPulse(g);
+            } else if (counter >= 220 && counter < 222) {
+                elipseReset(811.05f, 309f, 298.6f);
+                rectReset(1570.35f, 515.3f, 216.35f, 89.4f);
+            } else if (counter >= 240 && counter < 247) {
+                rectPulse(g);
             }
-            else if (counter >= 43 && counter < 46) {
-
-                pX += 2.45f;
-                pY += 2.45f;
-                radius -= 4.87f;
-
-                g.drawOval(pX, pY, radius, radius);
-            }
-            else if (counter >= 46 && counter < 57) {
-
-                pX -= 1.49f;
-                pY -= 1.49f;
-                radius += 2.97f;
-
-                g.drawOval(pX, pY, radius, radius);
-            }
-            else if (counter >= 57 && counter < 69) {
-
-                pX += 2.49f;
-                pY += 2.49f;
-                radius -= 4.97f;
-
-                g.drawOval(pX, pY, radius, radius);
-            }
-            else if (counter >= 69 && counter < 72) {
-
-                pX -= 1.75f;
-                pY -= 1.75f;
-                radius += 3.5f;
-
-                g.drawOval(pX,pY,radius,radius);
-            } else if (counter >= 72 && counter < 75) {
-
-                pX += 2.45f;
-                pY += 2.45f;
-                radius -= 4.87f;
-
-                g.drawOval(pX,pY,radius,radius);
-            }
-            else if (counter >= 75 && counter < 86) {
-
-                pX -= 1.49f;
-                pY -= 1.49f;
-                radius += 2.97f;
-
-                g.drawOval(pX, pY, radius, radius);
-            }
-
-
         }
     }
 
     /***************************************
-     *  Getter and setter methods
-     *
+     * Getter and setter methods
      ***************************************/
 
     public boolean isRunning() {
@@ -544,12 +542,15 @@ class FlammableAnim {
 
 
     /***************************************
-     *  Reset values for the animation
-     *
+     * Reset values for the animation
      ***************************************/
     private void reset() {
 
         counter = 0;
+        alpha = 255;
+        alphaOverlay = 255;
+        alphaOverlayDeux = 255;
+        alphaOverlayR = 255;
 
         xPos = 957.4f;
         yPos = 1080.65f;
@@ -599,6 +600,76 @@ class FlammableAnim {
         pX = 903.85f;
         pY = 892.5f;
         radius = 110.6f;
+
+        pX2 = 1356.65f;
+        pY2 = 919.35f;
+        radius2 = 38f;
+
+        pXr = 1297.75f;
+        pYr = 630.05f;
+        widthRP = 488.9f;
+        heightRP = 40.55f;
     }
 
+    private void elipsePulse(Graphics g) {
+        Color overLayColor = new Color(198, 55, 32, alphaOverlay);
+
+        pX -= 1.75f;
+        pY -= 1.75f;
+        radius += 3.5f;
+        g.setLineWidth(10);
+        g.setColor(overLayColor);
+        g.drawOval(pX, pY, radius, radius);
+        alphaOverlay -= 25.37f;
+    }
+
+    private void elipsePulseDeux(Graphics g) {
+        Color overLayColor2 = new Color(198, 55, 32, alphaOverlayDeux);
+
+        pX2 -= 1.75f;
+        pY2 -= 1.75f;
+        radius2 += 3.5f;
+        g.setLineWidth(10f);
+        g.setColor(overLayColor2);
+        g.drawOval(pX2, pY2, radius2, radius2);
+        alphaOverlayDeux -= 25.37f;
+    }
+
+    private void elipseReset(float x, float y, float radius) {
+        alphaOverlay = 255;
+
+        this.pX = x;
+        this.pY = y;
+        this.radius = radius;
+    }
+
+    private void elipseResetDeux(float x, float y, float radius) {
+        alphaOverlayDeux = 255;
+
+        this.pX2 = x;
+        this.pY2 = y;
+        this.radius2 = radius;
+    }
+
+    private void rectPulse(Graphics g) {
+        Color overLayColorR = new Color(198, 55, 32, alphaOverlayR);
+
+        pXr -= 1.75;
+        pYr -= 1.75;
+        widthRP += 3.5;
+        heightRP += 3.5;
+        g.setColor(overLayColorR);
+        g.setLineWidth(5f);
+        g.drawRect(pXr, pYr, widthRP, heightRP);
+        alphaOverlayR -= 25.37f;
+    }
+
+    private void rectReset(float x, float y, float width, float height) {
+        alphaOverlayR = 255;
+
+        this.pXr = x;
+        this.pYr = y;
+        this.widthRP = width;
+        this.heightRP = height;
+    }
 }
