@@ -1,5 +1,6 @@
 package example;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,11 +16,12 @@ import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.util.ResourceLoader;
 
 import org.newdawn.slick.*;
+import org.puredata.core.PdBase;
 
 public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
 
     private Image wires, bg, toplayer, colourScheme;
-    static AudioPlayer audioPlayer = new AudioPlayer();
+    //static AudioPlayer audioPlayer = new AudioPlayer();
 
     private static final int LISTSIZE = 10;
 
@@ -90,7 +92,12 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
 
     private DatabaseHandler databaseHandler;
 
-    TrueTypeFont font;
+    private float soniFlam, soniOrg, soniCard;
+
+    private ThrowTrashSound soundPlayer = new ThrowTrashSound();
+
+
+    private TrueTypeFont font;
 
     private RoskildeVolunteerLoungeVisualClient(String gamename) {
         super(gamename);
@@ -328,6 +335,10 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
             if (cardList.get(j).isUpdateWeight() || organList.get(j).isUpdateWeight() || flamList.get(j).isUpdateWeight()) {
                 updateWeight();
             }
+
+            soniFlam = prevFlamW%100;
+            soniCard = prevCardBoardW%100;
+            soniOrg = prevOrganW%100;
         }
 
         //KEYBOARD CONTROL FOR TESTING
@@ -337,12 +348,14 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
             lastUsed = 0;
             selector(2);
             organList.get(currentSelectionOrgan).setRunning(true);
+            soundPlayer.triggerSound(0, (int)soniOrg);
         }
         if (gc.getInput().isKeyPressed(Input.KEY_2)) {
             prevLastUsed = lastUsed;
             lastUsed = 0;
             selector(0);
             flamList.get(currentSelectionFlame).setRunning(true);
+            soundPlayer.triggerSound(1, (int)soniFlam);
         }
 
         if (gc.getInput().isKeyPressed(Input.KEY_3)) {
@@ -350,6 +363,7 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
             lastUsed = 0;
             selector(1);
             cardList.get(currentSelectionCard).setRunning(true);
+            soundPlayer.triggerSound(2, (int)soniCard);
         }*/
     }
 
@@ -481,13 +495,29 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
         flamW = 4000;
         coffeeBarActivated = 150;
         shuffleBoardActivated = 100;
+
+        //SONIFICATION STARTUP
+        soniCard = 0;
+        soniOrg = 0;
+        soniFlam = 0;
     }
 
     public static void main(String[] args) {
+
+
+        try {
+            JavaSoundThread audioThread = new JavaSoundThread(44100, 2, 16);
+            int patch = PdBase.openPatch("src/remade2.pd");
+            audioThread.start();
+        } catch (IOException ioex) {
+            ioex.printStackTrace();
+        }
+
+
         try {
             AppGameContainer appgc;
             appgc = new AppGameContainer(new RoskildeVolunteerLoungeVisualClient("Simple Slick Game"));
-            appgc.setDisplayMode(1920, 1080, false);
+            appgc.setDisplayMode(1920, 1080, true);
             appgc.setShowFPS(false);
             appgc.setTargetFrameRate(24);
             appgc.start();
@@ -499,19 +529,23 @@ public class RoskildeVolunteerLoungeVisualClient extends BasicGame {
     public void onReceive(String msg) {
         String[] splitMessage = msg.split(",");
 
-        double weight = Double.parseDouble(splitMessage[1]);
+        double weight = Double.parseDouble(splitMessage[1]) * 5;
         System.out.println("Weight is: " + weight);
 
-        databaseHandler.addItem(splitMessage[0], weight);
         System.out.println("Added to database!");
 
-        if (splitMessage[0].equals("Flammable")) {
+        if (splitMessage[0].equals("f")) {
+            databaseHandler.addItem("Flammable", weight);
             startFlammable();
-        } else if (splitMessage[0].equals("Cardboard")) {
-            startCardboard();
-        } else if (splitMessage[0].equals("Organic")) {
-            audioPlayer.playSoundBio(1);
+            soundPlayer.triggerSound(1, (int)soniCard);
+        } else if (splitMessage[0].equals("c")) {
+            databaseHandler.addItem("Organic", weight);
             startOrganic();
+            soundPlayer.triggerSound(2, (int)soniOrg);
+        } else if (splitMessage[0].equals("o")) {
+            databaseHandler.addItem("Cardboard", weight);
+            startCardboard();
+            soundPlayer.triggerSound(0, (int)soniFlam);
         } else {
             System.out.println("Someone is trying to hack our wonderful system!");
         }

@@ -29,5 +29,6 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="libpd" level="project" />
   </component>
 </module>
